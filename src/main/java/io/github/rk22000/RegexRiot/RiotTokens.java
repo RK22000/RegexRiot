@@ -14,4 +14,6 @@ public class RiotTokens {
             LINE_START  = riot("^", false),
             Line_END    = riot("$", false),
             EMPTY   = riot(emptyBasicRiotString());
+    public static final int
+            UNLIMITED=-1;
 }

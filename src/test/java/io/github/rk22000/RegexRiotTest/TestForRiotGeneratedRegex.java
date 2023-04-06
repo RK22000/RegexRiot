@@ -29,7 +29,7 @@ class TestForRiotGeneratedRegex {
         check();
     }
     @Test
-    void decimalNumber() {
+    void ex1_decimalNumber() {
         ritex = oneOrMore(DIGIT)
                 .and(DOT)
                 .and(oneOrMore(DIGIT));
@@ -53,7 +53,7 @@ class TestForRiotGeneratedRegex {
             2 The Godfather (1972)
             3 The Godfather: Part II (1974)
          */
-    void filmsBefore1990() {
+    void ex2_filmsBefore1990() {
         answer = "^.+\\((19[0-8]\\d|\\d{3}|\\d{2}|\\d{1})\\)";
         ritex = LINE_START
                 .and(oneOrMore(ANY_CHAR))
@@ -88,4 +88,6 @@ class TestForRiotGeneratedRegex {
                 .and(CLOSE_BRACKET);
         check();
     }
+
+
 }

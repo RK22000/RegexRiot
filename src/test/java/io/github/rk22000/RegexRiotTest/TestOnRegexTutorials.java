@@ -29,7 +29,7 @@ public class TestOnRegexTutorials {
      * Match numbers containing floating point. Skip those that don't.
      */
     @Test
-    void FloatingPointNumbers() {
+    void EX1_FloatingPointNumbers() {
         answer = "\\d+\\.\\d+";
         ritex = oneOrMore(DIGIT).and(DOT).and(oneOrMore(DIGIT));
         System.out.println(ritex);
@@ -54,7 +54,7 @@ public class TestOnRegexTutorials {
      * 10 Fight Club (1999)
      */
     @Test
-    void filmsBefore1990() {
+    void EX2_filmsBefore1990() {
         answer = "^.+\\((19[0-8]\\d|\\d{3}|\\d{2}|\\d)\\)";
         ritex = LINE_START.and(oneOrMore(ANY_CHAR))
                 .and(OPEN_BRACKET)
@@ -93,7 +93,7 @@ public class TestOnRegexTutorials {
      * Blue #00F
      */
     @Test
-    void hexadecimalColors() {
+    void EX3_hexadecimalColors() {
         ritex = riot("#")
                 .and(
                         DIGIT.or(
@@ -127,7 +127,7 @@ public class TestOnRegexTutorials {
      *
      */
     @Test
-    void greyScaleColors() {
+    void EX4_greyScaleColors() {
         answer = "#((\\d|[A-F]|[a-f]){1,2})\\1{2}";
         ritex = riot("#")
                 .and(
@@ -156,6 +156,72 @@ public class TestOnRegexTutorials {
                 .times(2);
         System.out.println(ritex);
         check();
+    }
+
+    /**
+     * <a href="http://regextutorials.com/excercise.html?Too%20long%20lines">
+     *     Too Long Lines
+     * </a>
+     * Match lines that are more than 30 characters long.
+     * This line is way too loooooooooooong.
+     * This one is fine.
+     * This one is fine too.
+     * This line is also too long................
+     *
+     */
+    @Test
+    void EX5_tooLongLines() {
+        /*
+        ANY_CHAR.times(30).and(oneOrMore(ANY_CHAR)
+        ANY_CHAR.times(31, infinity)
+         */
+        answer = ".{30}.+";
+        ritex = ANY_CHAR.times(30).and(oneOrMore(ANY_CHAR));
+        check();
+        answer = ".{31,}";
+        ritex = ANY_CHAR.times(31, UNLIMITED);
+        check();
+    }
+
+    /**
+     * <a href="http://regextutorials.com/excercise.html?Remove%20repeating%20words">
+     *     Remove Repeat Words
+     * </a>
+     * Some words in this text are accidentally repeated. Remove the doubles.
+     * <br>
+     * It was a chilly November afternoon. I had just just consummated an unusually hearty dinner, of which the dyspeptic truffe formed not the least important item, and was sitting alone in the dining-room dining-room, with my feet upon the the fender, and at my elbow a small table which I had rolled up to the fire, and upon which were some apologies for dessert, with some miscellaneous bottles bottles of wine, spirit and liqueur. In the morning I had had been reading Glover's "Leonidas", Wilkie's Wilkie's "Epigoniad", Lamartine's "Pilgrimage", Barlow's "Columbiad", Tuckermann's "Sicily", and Griswold's "Curiosities" ; I am willing to confess, therefore, that I now felt a little stupid.
+     */
+    @Test
+    void EX6_removeRepeatWords() {
+        assert false: "Nope, Just Nope. I've got no clue for now how to test this. ATB Future me!";
+        /*
+        Replace regex:( [^ ]+)\1
+        with         :$1
+         */
+    }
+
+    /**
+     * <a href="http://regextutorials.com/excercise.html?Match%20HTML%20tags">
+     *     Match HTML Tags
+     * </a>
+     * It is a common wisdom that regular expressions are not a good way of dealing with HTML, and there are perfectly good reasons for this. But in this excercise you only need to match simple HTML tags.
+     * <br>
+     *
+     * <!DOCTYPE html>
+     * <html>
+     * <head>
+     * <title>This is a title</title>
+     * </head>
+     * <body>
+     * <p>Hello world!</p>
+     * </body>
+     * </html>
+     */
+    @Test
+    void EX7_matchHTML() {
+        /*
+        riot(<).and( oneOrMore( not(
+         */
     }
 
 }
