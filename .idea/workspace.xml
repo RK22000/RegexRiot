@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c408116-9517-43a7-a7a4-bc833152cbaa" name="Changes" comment="package privating SimpleRiot stuff">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotCollections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotCollections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTokens.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTokens.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiot/RiotStringTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiot/RiotStringTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestForRiotGeneratedRegex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestForRiotGeneratedRegex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestOnRegexTutorials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestOnRegexTutorials.java" afterDir="false" />
-    </list>
+    <list default="true" id="9c408116-9517-43a7-a7a4-bc833152cbaa" name="Changes" comment="package privating SimpleRiot stuff" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
