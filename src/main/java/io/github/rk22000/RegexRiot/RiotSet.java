@@ -3,56 +3,71 @@ package io.github.rk22000.RegexRiot;
 import static io.github.rk22000.RegexRiot.Riot.riot;
 
 public interface RiotSet {
-    static RiotSet riotSet(RiotString initialElement) {
-        return new BasicRiotSet(initialElement);
+    static RiotSet riotSet() {
+        return new BasicRiotSet("", "");
+    }
+    RiotSet include(String includes);
+    default RiotSet include(RiotString includes) {
+        return this.include(includes.toString());
+    }
+    RiotSet exclude(String excludes);
+    default RiotSet exclude(RiotString excludes) {
+        return this.exclude(excludes.toString());
     }
     RiotSet union(RiotSet oSet);
-    RiotString toRiotString();
 
+    default RiotString toRiotString() {
+        return riot(toString(), true);
+    }
 
     static RiotSet charsIn(char[] chars) {
-        return riotSet(riot(new String(chars)));
+        return riotSet().include(new String(chars));
     }
     class RiotCharRange {
         private final char startChar;
         RiotCharRange(char inclusiveStartChar) {
             startChar = inclusiveStartChar;
         }
-        public RiotSet through(char inclusiveEndChar) {
-            return riotSet(riot(startChar+"-"+inclusiveEndChar, true));
+        public String through(char inclusiveEndChar) {
+            return startChar+"-"+inclusiveEndChar;
         }
     }
 
     static RiotCharRange chars(char inclusiveStartChar) {
         return new RiotCharRange(inclusiveStartChar);
     }
+    static RiotSet chars(String chars) {
+        return riotSet().include(chars);
+    }
 
 }
 
 class BasicRiotSet implements RiotSet{
-    RiotString setString;
-    BasicRiotSet(RiotString initialElement) {
-        setString = initialElement;
+    String inString = "", outString = "";
+    BasicRiotSet(String includes, String excludes) {
+        inString = includes;
+        outString = excludes;
     }
 
     @Override
     public String toString() {
-        return setString.toString();
+        var suffix = "".equals(outString) ? "" : "^"+outString;
+        return "["+inString+suffix+"]";
+    }
+
+    @Override
+    public RiotSet include(String includes) {
+        // inString = A-F, include = a-f, result -> A-Faf. not good
+        return new BasicRiotSet(includes+inString, outString);
+    }
+    @Override
+    public RiotSet exclude(String excludes) {
+        return new BasicRiotSet(inString, excludes+outString);
     }
 
     @Override
     public RiotSet union(RiotSet oSet) {
-        return new BasicRiotSet(
-                setString.and(oSet.toString())
-        );
-    }
-
-    @Override
-    public RiotString toRiotString() {
-        return riot(
-                "[" + setString + "]",
-                true
-        );
+        return oSet.include(inString).exclude(outString);
     }
 }
 

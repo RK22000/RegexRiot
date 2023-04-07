@@ -24,6 +24,9 @@ public interface RiotString {
     default RiotString or(RiotString extension) {
         return this.or(extension.toSimpleRiotString());
     }
+    default RiotString or(RiotSet set) {
+        return this.or(set.toRiotString());
+    }
     RiotString wholeTimes(int atleast, int atmost);
     RiotString wholeTimes(int repeatCount);
 

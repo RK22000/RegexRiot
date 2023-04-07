@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static io.github.rk22000.RegexRiot.Riot.riot;
 import static io.github.rk22000.RegexRiot.RiotGroupings.group;
 import static io.github.rk22000.RegexRiot.RiotQuantifiers.oneOrMore;
+import static io.github.rk22000.RegexRiot.RiotQuantifiers.zeroOrMore;
 import static io.github.rk22000.RegexRiot.RiotSet.chars;
 import static io.github.rk22000.RegexRiot.RiotSet.riotSet;
 import static io.github.rk22000.RegexRiot.RiotTokens.*;
@@ -60,7 +61,7 @@ public class TestOnRegexTutorials {
                 .and(OPEN_BRACKET)
                 .and(
                         riot("19").and(
-                                chars('0').through('8')
+                                riotSet().include(chars('0').through('8'))
                         ).and(DIGIT).or(
                                 DIGIT.times(3)
                         ).or(
@@ -97,7 +98,8 @@ public class TestOnRegexTutorials {
         ritex = riot("#")
                 .and(
                         DIGIT.or(
-                                chars('A').through('F').toRiotString()
+//                                chars('A').through('F').toRiotString()
+                                riotSet().include(chars('A').through('F'))
                         )
                 ).times(6);
         // TODO: Default grouping should be grouping without remembering like #(?:\d|[A-F]){6} instead of #(\d|[A-F]){6}
@@ -132,9 +134,9 @@ public class TestOnRegexTutorials {
         ritex = riot("#")
                 .and(
                         DIGIT.or(
-                                chars('A').through('F').toRiotString()
+                                riotSet().include(chars('A').through('F'))
                         ).or(
-                                chars('a').through('f').toRiotString()
+                                riotSet().include(chars('a').through('f'))
                         )
                 ).times(1, 2)
                 .grouped()
@@ -145,11 +147,11 @@ public class TestOnRegexTutorials {
         answer = "#([\\dA-Fa-f]{1,2})\\1{2}";
         ritex = riot("#")
                 .and(
-                        riotSet(DIGIT).union(
-                                chars('A').through('F')
+                        riotSet().include(DIGIT).union(
+                                riotSet().include(chars('A').through('F'))
                         ).union(
-                                chars('a').through('f')
-                        )
+                                riotSet().include(chars('a').through('f'))
+                        ) // Todo This needs to be recognized as a unit riotstring so that unnecessary grouping is not used
                 ).times(1, 2)
                 .grouped()
                 .and(group(1))
@@ -219,9 +221,95 @@ public class TestOnRegexTutorials {
      */
     @Test
     void EX7_matchHTML() {
-        /*
-        riot(<).and( oneOrMore( not(
-         */
+        ritex = riot("<").and(
+                oneOrMore(riotSet().exclude(">"))
+        ).and(">");
+        answer = "<[^>]+>";
+        check();
+    }
+
+    /**
+     * <a href="http://regextutorials.com/excercise.html?Cut%20numbers%20to%20two%20digits%20after%20floating%20point">
+     *     Cut numbers to two digits after floating point
+     * </a>
+     * Leave only two numbers after the floating point in every number
+     * Input text:
+     * 1 Euro = 1.351299 US Dollar
+     * British Pound = 1.614873 US Dollar
+     * Australian Dollar = 0.916063 US Dollar
+     * Canadian Dollar = 0.947400 US Dollar
+     * Emirati Dirham = 0.272257 US Dollar
+     * Swiss Franc = 1.096267 US Dollar
+     * Chinese Yuan = 0.164114 US Dollar
+     * Malaysian Ringgit = 0.310681 US Dollar
+     * New Zealand Dollar = 0.819950 US Dollar
+     * <br>
+     * replace = (\d+\.\d{0,2})\d*
+     * with = $1
+     */
+    @Test
+    void EX8_cutNumbersTwoDecimal() {
+        assert false: "Nope. Not yet";
+    }
+
+    /**
+     * <a href="http://regextutorials.com/excercise.html?Match%20lowercase%20function%20declarations">
+     *     Match lowercase function declarations
+     * </a>
+     * Match all function declarations that are not uppercase
+     * <br>
+     * function foo() {return bar();}
+     * function Foo() {return Bar();}
+     * function Baz(x) {return function(y){return x+y;}}
+     * function bazEx(x) {return function(y, z){return x+y+z;}}
+     * function bar() {return 0;}
+     * function Bar() {return 1;}
+     */
+    @Test
+    void EX10_lowercaseFunctionDeclaration() {
+        ritex = riot("function ").and(
+                        riotSet().include(chars('a').through('z')).toRiotString()
+                ).and(oneOrMore(WORD_CHAR))
+                .and(OPEN_BRACKET)
+                .and(zeroOrMore(riotSet().exclude(CLOSE_BRACKET)))
+                .and(CLOSE_BRACKET);
+        answer = "function [a-z]\\w+\\([^\\)]*\\)";
+        check();
+    }
+
+    /**
+     * <a href="http://regextutorials.com/excercise.html?Validate%2024h%20time%20format">
+     *     Match valid time in 24h format
+     * </a>
+     * Match valid time in 24h format
+     * Valid and invalid time:
+     * 00:15
+     * 07:40
+     * 08:61
+     * 09:59
+     * 13:00
+     * 14:7
+     * 20:20
+     * 23:61
+     * 24:15
+     */
+    @Test
+    void EX12_validate24hFormat() {
+        ritex = riot()
+                .and(
+                        // Hours
+                        riotSet().include("01").toRiotString().and(DIGIT).or(
+                                riot("2").and(riotSet().include("0123"))
+                        ).wholeThingGrouped()
+                ).and(":")
+                .and(
+                        // Minutes
+                        riotSet().include("012345").toRiotString().and(DIGIT)
+                );
+        answer = "([01]\\d|2[0123]):[012345]\\d";
+        check();
+//        ritex = chars("01").toRiotString().and(DIGIT)
+        // TODO: convert RiotSet into a type of RiotString
     }
 
 }
