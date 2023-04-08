@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c408116-9517-43a7-a7a4-bc833152cbaa" name="Changes" comment="enabled Riotset and stuff">
+    <list default="true" id="9c408116-9517-43a7-a7a4-bc833152cbaa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/Riot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/Riot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotQuantifiers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotQuantifiers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotString.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestOnRegexTutorials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestOnRegexTutorials.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,7 +77,7 @@
       <recent name="io.github.rk22000" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TestOnRegexTutorials.EX12_validate24hFormat">
+  <component name="RunManager" selected="Gradle.TestOnRegexTutorials">
     <configuration name="TestOnRegexTutorials" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -149,7 +147,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestOnRegexTutorials.EX2_filmsBefore1990" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestOnRegexTutorials.EX1_FloatingPointNumbers" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -162,7 +160,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX2_filmsBefore1990&quot;" />
+            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX1_FloatingPointNumbers&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -197,11 +195,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.TestOnRegexTutorials.EX12_validate24hFormat" />
         <item itemvalue="Gradle.TestOnRegexTutorials" />
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX12_validate24hFormat" />
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX1_FloatingPointNumbers" />
         <item itemvalue="Gradle.TestOnRegexTutorials.EX10_lowercaseFunctionDeclaration" />
         <item itemvalue="Gradle.TestOnRegexTutorials.EX7_matchHTML" />
-        <item itemvalue="Gradle.TestOnRegexTutorials.EX2_filmsBefore1990" />
       </list>
     </recent_temporary>
   </component>

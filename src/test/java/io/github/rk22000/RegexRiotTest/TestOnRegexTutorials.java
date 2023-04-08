@@ -151,7 +151,7 @@ public class TestOnRegexTutorials {
                                 riotSet().include(chars('A').through('F'))
                         ).union(
                                 riotSet().include(chars('a').through('f'))
-                        ) // Todo This needs to be recognized as a unit riotstring so that unnecessary grouping is not used
+                        )
                 ).times(1, 2)
                 .grouped()
                 .and(group(1))
@@ -310,6 +310,13 @@ public class TestOnRegexTutorials {
         check();
 //        ritex = chars("01").toRiotString().and(DIGIT)
         // TODO: convert RiotSet into a type of RiotString
+        ritex = chars("01").and(DIGIT).or(
+                riot("2").and(chars("0123"))
+        ).wholeThingGrouped()
+                .and(":")
+                .and(chars("012345").and(DIGIT));
+        answer = "([01]\\d|2[0123]):[012345]\\d";
+        check();
     }
 
 }
