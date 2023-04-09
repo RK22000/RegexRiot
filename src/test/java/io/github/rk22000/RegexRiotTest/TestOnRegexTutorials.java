@@ -318,6 +318,52 @@ public class TestOnRegexTutorials {
         answer = "([01]\\d|2[0123]):[012345]\\d";
         check();
     }
+    /**
+     * <a href="http://regextutorials.com/excercise.html?IPv6%20adresses">
+     *     IPv6 adresses
+     * </a>
+     * Match IPv6 addresses. An IPv6 address consists of 8 colon-delimited blocks of 4 hexadecimal digits. Blocks of all zeroes can be omitted. Leading zeroes in a block can be omitted too.
+     * <br>
+     * Initial address: 2001:0db8:0000:0000:0000:ff00:0042:8329
+     * After removing all leading zeroes: 2001:db8:0:0:0:ff00:42:8329
+     * After omitting consecutive sections of zeroes: 2001:db8::ff00:42:8329
+     * Another example: 2607:f0d0:1002:0051:0000:0000:0000:0004
+     * After removing all leading zeroes: 2607:f0d0:1002:51:0:0:0:4
+     * After omitting consecutive sections of zeroes: 2607:f0d0:1002:51::4
+     */
+    @Test
+    void EX16_IPV6address() {
+        ritex = HEX_LOWER.times(1, 4)
+                .and(
+                        riot(":").and(HEX_LOWER.times(0, 4))
+                                .wholeTimes(1, 6)
+                )
+                .and(":")
+                .and(HEX_LOWER.times(1, 4));
+        answer = "[a-f\\d]{1,4}(:[a-f\\d]{0,4}){1,6}:[a-f\\d]{1,4}";
+        check();
+    }
+
+    /**
+     * <a href="http://regextutorials.com/excercise.html?Validate%2032%20or%2024%20bit%20hexadecimal%20colors">
+     *     Validate 32 or 24 bit hexadecimal colors
+     * </a>
+     * Highlight valid 24 and 32 bit hexadecimal colors. Colors start with #
+     * <br>
+     * White: #ffffff, #ffffffff
+     * Black:#000000 #000000ff
+     * Semitrnasparent green: #00ff0088
+     * Nonhexadecimal: #00ffhh #agaeffe0
+     * Wrong bytes count:#00ff00f #fffff #888888fff
+     */
+    @Test
+    void EX17_valid32_24HexColors() {
+        ritex = riot("#")
+                .and(HEX).times(6)
+                .and(HEX).times(2).optionally();
+        System.err.println(ritex);
+        assert false: "Gotta resolve a RiotSet Issue before this";
+    }
 
 }
 
