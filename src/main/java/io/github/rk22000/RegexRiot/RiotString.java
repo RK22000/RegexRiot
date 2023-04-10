@@ -13,9 +13,6 @@ public interface RiotString {
     default RiotString and(RiotString extension) {
         return this.and(extension.toSimpleRiotString());
     }
-    default RiotString and(RiotSet set) {
-        return this.and(set.toRiotString());
-    }
 
     RiotString or(SimpleRiotString extension);
     default RiotString or(String extension) {
@@ -24,7 +21,7 @@ public interface RiotString {
     default RiotString or(RiotString extension) {
         return this.or(extension.toSimpleRiotString());
     }
-    default RiotString or(RiotSet set) {
+    default RiotString or(RiSet set) {
         return this.or(set.toRiotString());
     }
     RiotString wholeTimes(int atleast, int atmost);

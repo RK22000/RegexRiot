@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static io.github.rk22000.RegexRiot.Riot.riot;
 import static io.github.rk22000.RegexRiot.RiotTokens.DIGIT;
 import static io.github.rk22000.RegexRiot.RiotTokens.WORD_CHAR;
-import static io.github.rk22000.RegexRiot.SimpleRiotTokens.DIGIT;
+//import static io.github.rk22000.RegexRiot.SimpleRiotTokens.DIGIT;
 
 class RiotStringTest {
     RiotString riotex;
@@ -53,7 +53,7 @@ class RiotStringTest {
         result = "(\\d\\w){3}";
         check();
 
-        riotex = riot(DIGIT()).and("HelloWorld").wholeTimes(4);
+        riotex = DIGIT.and("HelloWorld").wholeTimes(4);
         System.out.println(riotex);
         result = "(\\dHelloWorld){4}";
         check();
@@ -90,7 +90,7 @@ class RiotStringTest {
         result = "\\d\\w{3}";
         check();
 
-        riotex = riot(DIGIT()).and("HelloWorld").times(4);
+        riotex = DIGIT.and("HelloWorld").times(4);
         System.out.println(riotex);
         result = "\\d(HelloWorld){4}";
         check();

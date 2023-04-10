@@ -13,8 +13,8 @@ public interface RiotQuantifiers {
         if (ritex.isNotUnitChain()) ritex = ritex.wholeThingGrouped();
         return ritex.and("*");
     }
-    static RiotString zeroOrMore(RiotSet riotSet) {
-        return zeroOrMore(riotSet.toRiotString());
+    static RiotString zeroOrMore(RiSet riSet) {
+        return zeroOrMore(riSet.toRiotString());
     }
     static RiotString zeroOrMore(String expression) {
         return zeroOrMore(riot(expression));
@@ -26,8 +26,8 @@ public interface RiotQuantifiers {
     static RiotString oneOrMore(String expression) {
         return oneOrMore(riot(expression));
     }
-    static RiotString oneOrMore(RiotSet riotSet) {
-        return oneOrMore(riotSet.toRiotString());
+    static RiotString oneOrMore(RiSet riSet) {
+        return oneOrMore(riSet.toRiotString());
     }
 
 }

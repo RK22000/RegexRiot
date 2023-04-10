@@ -3,13 +3,17 @@ package io.github.rk22000.RegexRiotTest;
 import io.github.rk22000.RegexRiot.RiotString;
 import org.junit.jupiter.api.Test;
 
+//import static io.github.rk22000.RegexRiot.RiSet.riotSet;
 import static io.github.rk22000.RegexRiot.Riot.riot;
 import static io.github.rk22000.RegexRiot.RiotGroupings.group;
 import static io.github.rk22000.RegexRiot.RiotQuantifiers.oneOrMore;
 import static io.github.rk22000.RegexRiot.RiotQuantifiers.zeroOrMore;
-import static io.github.rk22000.RegexRiot.RiotSet.chars;
-import static io.github.rk22000.RegexRiot.RiotSet.riotSet;
+//import static io.github.rk22000.RegexRiot.RiSet.chars;
+//import static io.github.rk22000.RegexRiot.RiSet.riotSet;
 import static io.github.rk22000.RegexRiot.RiotTokens.*;
+import static io.github.rk22000.RegexRiot.RiotTypedSet.ExclusiveSet.riotExclude;
+import static io.github.rk22000.RegexRiot.RiotTypedSet.InclusiveSet.riotInclude;
+import static io.github.rk22000.RegexRiot.RiotTypedSet.RiotSetUtils.chars;
 
 /**
  * This test class is to test if RegexRiot is good enough to generate answers for the exercises on
@@ -61,7 +65,8 @@ public class TestOnRegexTutorials {
                 .and(OPEN_BRACKET)
                 .and(
                         riot("19").and(
-                                riotSet().include(chars('0').through('8'))
+                                riotInclude(chars('0').through('8'))
+//                                riotSet().include(chars('0').through('8'))
                         ).and(DIGIT).or(
                                 DIGIT.times(3)
                         ).or(
@@ -99,7 +104,8 @@ public class TestOnRegexTutorials {
                 .and(
                         DIGIT.or(
 //                                chars('A').through('F').toRiotString()
-                                riotSet().include(chars('A').through('F'))
+//                                riotSet().include(chars('A').through('F'))
+                                riotInclude(chars('A').through('F'))
                         )
                 ).times(6);
         // TODO: Default grouping should be grouping without remembering like #(?:\d|[A-F]){6} instead of #(\d|[A-F]){6}
@@ -134,23 +140,11 @@ public class TestOnRegexTutorials {
         ritex = riot("#")
                 .and(
                         DIGIT.or(
-                                riotSet().include(chars('A').through('F'))
+                                riotInclude(chars('A').through('F'))
+//                                riotSet().include(chars('A').through('F'))
                         ).or(
-                                riotSet().include(chars('a').through('f'))
-                        )
-                ).times(1, 2)
-                .grouped()
-                .and(group(1))
-                .times(2);
-        System.out.println(ritex);
-        check();
-        answer = "#([\\dA-Fa-f]{1,2})\\1{2}";
-        ritex = riot("#")
-                .and(
-                        riotSet().include(DIGIT).union(
-                                riotSet().include(chars('A').through('F'))
-                        ).union(
-                                riotSet().include(chars('a').through('f'))
+                                riotInclude(chars('a').through('f'))
+//                                riotSet().include(chars('a').through('f'))
                         )
                 ).times(1, 2)
                 .grouped()
@@ -222,7 +216,7 @@ public class TestOnRegexTutorials {
     @Test
     void EX7_matchHTML() {
         ritex = riot("<").and(
-                oneOrMore(riotSet().exclude(">"))
+                oneOrMore(riotExclude(">"))// riotSet().exclude(">"))
         ).and(">");
         answer = "<[^>]+>";
         check();
@@ -268,10 +262,11 @@ public class TestOnRegexTutorials {
     @Test
     void EX10_lowercaseFunctionDeclaration() {
         ritex = riot("function ").and(
-                        riotSet().include(chars('a').through('z')).toRiotString()
+                riotInclude(chars('a').through('z'))
+//                        riotSet().include(chars('a').through('z')).toRiotString()
                 ).and(oneOrMore(WORD_CHAR))
                 .and(OPEN_BRACKET)
-                .and(zeroOrMore(riotSet().exclude(CLOSE_BRACKET)))
+                .and(zeroOrMore(riotExclude(CLOSE_BRACKET)))//riotSet().exclude(CLOSE_BRACKET)))
                 .and(CLOSE_BRACKET);
         answer = "function [a-z]\\w+\\([^\\)]*\\)";
         check();
@@ -298,13 +293,17 @@ public class TestOnRegexTutorials {
         ritex = riot()
                 .and(
                         // Hours
-                        riotSet().include("01").toRiotString().and(DIGIT).or(
-                                riot("2").and(riotSet().include("0123"))
+                        riotInclude("01").and(DIGIT).or(
+                                riot("2").and(riotInclude("0123"))
                         ).wholeThingGrouped()
+//                        riotSet().include("01").toRiotString().and(DIGIT).or(
+//                                riot("2").and(riotSet().include("0123"))
+//                        ).wholeThingGrouped()
                 ).and(":")
                 .and(
                         // Minutes
-                        riotSet().include("012345").toRiotString().and(DIGIT)
+                        riotInclude("012345").and(DIGIT)
+//                        riotSet().include("012345").toRiotString().and(DIGIT)
                 );
         answer = "([01]\\d|2[0123]):[012345]\\d";
         check();

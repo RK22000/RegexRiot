@@ -4,21 +4,21 @@ import java.util.regex.Pattern;
 
 import static io.github.rk22000.RegexRiot.Riot.riot;
 
-public interface RiotSet extends RiotString{
-    static RiotSet riotSet() {
-        return new BasicRiotSet("", "");
+public interface RiSet extends RiotString{
+    static RiSet riotSet() {
+        return new BasicRiSet("", "");
     }
-    RiotSet include(String includes);
-    default RiotSet include(RiotString includes) {
+    RiSet include(String includes);
+    default RiSet include(RiotString includes) {
         return this.include(includes.toString());
     }
-    RiotSet exclude(String excludes);
-    default RiotSet exclude(RiotString excludes) {
+    RiSet exclude(String excludes);
+    default RiSet exclude(RiotString excludes) {
         return this.exclude(excludes.toString());
     }
 
     // TODO: Deprecate this methods. Instead exclusively use include() and exclude()
-    RiotSet union(RiotSet oSet);
+    RiSet union(RiSet oSet);
 
     default RiotString toRiotString() {
         return riot(toString(), true);
@@ -37,12 +37,12 @@ public interface RiotSet extends RiotString{
     static RiotCharRange chars(char inclusiveStartChar) {
         return new RiotCharRange(inclusiveStartChar);
     }
-    static RiotSet chars(String chars) {
+    static RiSet chars(String chars) {
         return riotSet().include(chars);
     }
 }
 
-abstract class RiotSetString implements RiotSet{
+abstract class RiSetString implements RiSet {
 
     @Override
     public SimpleRiotString simpleRiotStringFrom(String expression) {
@@ -125,9 +125,9 @@ abstract class RiotSetString implements RiotSet{
     }
 }
 
-class BasicRiotSet extends RiotSetString{
+class BasicRiSet extends RiSetString {
     String inString = "", outString = "";
-    BasicRiotSet(String includes, String excludes) {
+    BasicRiSet(String includes, String excludes) {
         inString = includes;
         outString = excludes;
     }
@@ -139,17 +139,17 @@ class BasicRiotSet extends RiotSetString{
     }
 
     @Override
-    public RiotSet include(String includes) {
+    public RiSet include(String includes) {
         // inString = A-F, include = a-f, result -> A-Faf. not good
-        return new BasicRiotSet(includes+inString, outString);
+        return new BasicRiSet(includes+inString, outString);
     }
     @Override
-    public RiotSet exclude(String excludes) {
-        return new BasicRiotSet(inString, excludes+outString);
+    public RiSet exclude(String excludes) {
+        return new BasicRiSet(inString, excludes+outString);
     }
 
     @Override
-    public RiotSet union(RiotSet oSet) {
+    public RiSet union(RiSet oSet) {
         return oSet.include(inString).exclude(outString);
     }
 }

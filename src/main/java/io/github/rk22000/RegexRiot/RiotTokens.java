@@ -2,8 +2,8 @@ package io.github.rk22000.RegexRiot;
 
 import static io.github.rk22000.RegexRiot.BasicRiotString.emptyBasicRiotString;
 import static io.github.rk22000.RegexRiot.Riot.riot;
-import static io.github.rk22000.RegexRiot.RiotSet.chars;
-import static io.github.rk22000.RegexRiot.RiotSet.riotSet;
+import static io.github.rk22000.RegexRiot.RiSet.chars;
+import static io.github.rk22000.RegexRiot.RiSet.riotSet;
 
 public class RiotTokens {
     public static final RiotString
