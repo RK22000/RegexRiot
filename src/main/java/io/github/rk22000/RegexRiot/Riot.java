@@ -3,12 +3,6 @@ package io.github.rk22000.RegexRiot;
 import static io.github.rk22000.RegexRiot.RiotTokens.EMPTY;
 
 public class Riot {
-    public static SimpleRiotString create(String seed) {
-        return new BasicRiotString(seed);
-    }
-    public static SimpleRiotString riotExpression(String seed) {
-        return new BasicRiotString(seed);
-    }
     static RiotString riot(String seed, boolean isUnitChain) {
         return new ChildRiotString(new BasicRiotString(seed, isUnitChain));
     }
