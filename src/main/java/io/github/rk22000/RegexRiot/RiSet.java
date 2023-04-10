@@ -16,6 +16,8 @@ public interface RiotSet extends RiotString{
     default RiotSet exclude(RiotString excludes) {
         return this.exclude(excludes.toString());
     }
+
+    // TODO: Deprecate this methods. Instead exclusively use include() and exclude()
     RiotSet union(RiotSet oSet);
 
     default RiotString toRiotString() {
