@@ -5,22 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c408116-9517-43a7-a7a4-bc833152cbaa" name="Changes" comment="enabled Riotset and stuff">
-      <change afterPath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/RiotStringTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiSet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/Riot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/Riot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotQuantifiers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotQuantifiers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotSet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotString.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTokens.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTokens.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTypedSet/ExclusiveSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTypedSet/ExclusiveSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTypedSet/InclusiveSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTypedSet/InclusiveSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTypedSet/RiotSetString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTypedSet/RiotSetString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTypedSet/RiotSetUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTypedSet/RiotSetUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/SimpleRiotString.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiot/RiotStringTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/RiotTypedSetTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/RiotTypedSetTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestForRiotGeneratedRegex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestForRiotGeneratedRegex.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestOnRegexTutorials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestOnRegexTutorials.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,8 +37,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -69,19 +59,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaMethodFindUsagesOptions.isImplementingMethods": "true",
+    "JavaMethodFindUsagesOptions.isSearchForBaseMethod": "false",
+    "JavaMethodFindUsagesOptions.isUsages": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "terminal"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -93,8 +86,8 @@
       <recent name="io.github.rk22000" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.RiotStringTest.optionally">
-    <configuration name="RiotStringTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.TestOnRegexTutorials.EX17_valid32_24HexColors">
+    <configuration name="TestOnRegexTutorials" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -107,7 +100,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;io.github.rk22000.RegexRiotTest.RiotStringTest&quot;" />
+            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -117,7 +110,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="RiotStringTest.optionally" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestOnRegexTutorials.EX10_lowercaseFunctionDeclaration" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -130,7 +123,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;io.github.rk22000.RegexRiotTest.RiotStringTest.optionally&quot;" />
+            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX10_lowercaseFunctionDeclaration&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -140,7 +133,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="RiotStringTest.t1" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestOnRegexTutorials.EX12_validate24hFormat" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -153,7 +146,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;io.github.rk22000.RegexRiotTest.RiotStringTest.t1&quot;" />
+            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX12_validate24hFormat&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -163,7 +156,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="RiotStringTest.times" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestOnRegexTutorials.EX16_IPV6address" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -176,7 +169,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;io.github.rk22000.RegexRiotTest.RiotStringTest.times&quot;" />
+            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX16_IPV6address&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -186,7 +179,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="RiotStringTest.wholeThingOptional" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestOnRegexTutorials.EX17_valid32_24HexColors" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -199,7 +192,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;io.github.rk22000.RegexRiotTest.RiotStringTest.wholeThingOptional&quot;" />
+            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX17_valid32_24HexColors&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -211,11 +204,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.RiotStringTest.optionally" />
-        <item itemvalue="Gradle.RiotStringTest.wholeThingOptional" />
-        <item itemvalue="Gradle.RiotStringTest" />
-        <item itemvalue="Gradle.RiotStringTest.t1" />
-        <item itemvalue="Gradle.RiotStringTest.times" />
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX17_valid32_24HexColors" />
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX16_IPV6address" />
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX12_validate24hFormat" />
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX10_lowercaseFunctionDeclaration" />
+        <item itemvalue="Gradle.TestOnRegexTutorials" />
       </list>
     </recent_temporary>
   </component>

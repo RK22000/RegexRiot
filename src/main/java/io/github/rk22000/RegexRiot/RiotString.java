@@ -2,9 +2,14 @@ package io.github.rk22000.RegexRiot;
 
 import java.util.function.BiFunction;
 
+import static io.github.rk22000.RegexRiot.RiotTokens.UNLIMITED;
+
 public interface RiotString {
     static RiotString lazyRiot(String seed) {
         return RiotStringImplementations.newLazyRiot(seed);
+    }
+    interface RiotStringable {
+        RiotString toRiotString();
     }
     /**
      * A method to create another RiotString of the same type(Lazy/Eager) as the current RiotString
@@ -13,10 +18,16 @@ public interface RiotString {
      */
     RiotString riotString(String seed);
     <T extends RiotString> RiotString and(T extension);
+    default <T extends RiotStringable> RiotString and(T extension) {
+        return and(extension.toRiotString());
+    }
     default <T> RiotString and(T extension) {
         return and(riotString(extension.toString()));
     }
     <T extends RiotString> RiotString or(T extension);
+    default <T extends RiotStringable> RiotString or(T extension) {
+        return or(extension.toRiotString());
+    }
     default <T> RiotString or(T extension) {
         return or(riotString(extension.toString()));
     }
@@ -55,13 +66,6 @@ class RiotStringImplementations {
     public static RiotString newLazyRiot(String seed, Boolean unit) {
         return new LazyRiotString(seed, unit);
     }
-    private interface Evalable<T> {
-        /**
-         * Evaluates all the recursive nested parts down to a simple string but does not process/format the string if its needed.
-         * @return the string produced on evaluating the recursive nested part.
-         */
-        T eval();
-    }
     private static class LazyRiotString implements Evalable<RiotString>, RiotString {
         final LazyRiotString prefix, suffix;
         final BiFunction<LazyRiotString, LazyRiotString, String> combinator;
@@ -76,8 +80,7 @@ class RiotStringImplementations {
                 LazyRiotString pfix,
                 LazyRiotString sfix,
                 BiFunction<LazyRiotString, LazyRiotString, String> extender,
-                boolean unit
-        ) {
+                boolean unit ) {
             if (pfix==null ^ sfix==null) throw new IllegalArgumentException("Can not have only one of prefix or suffix be null. Either both should be null or neither should be");
             prefix = pfix;
             suffix = sfix;
@@ -129,7 +132,7 @@ class RiotStringImplementations {
                         prefix,
                         suffix,
                         combinator.andThen(res -> res + "{"+n+"}"),
-                        true
+                        false
                 );
             else
                 return wholeThingGroupedAndForgotten().wholeTimes(n);
@@ -137,12 +140,14 @@ class RiotStringImplementations {
 
         @Override
         public RiotString wholeTimes(int atleast, int atmoast) {
+            String lbound = atleast==UNLIMITED? "" : String.valueOf(atleast);
+            String ubound = atmoast==UNLIMITED? "" : String.valueOf(atmoast);
             if (unitChained)
                 return new LazyRiotString(
                         prefix,
                         suffix,
-                        combinator.andThen(res -> res + "{"+atleast+","+atmoast+"}"),
-                        true
+                        combinator.andThen(res -> res + "{"+lbound+","+ubound+"}"),
+                        false
                 );
             else
                 return wholeThingGroupedAndForgotten().wholeTimes(atleast, atmoast);

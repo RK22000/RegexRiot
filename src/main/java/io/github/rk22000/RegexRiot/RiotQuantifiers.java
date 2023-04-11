@@ -9,19 +9,28 @@ public class RiotQuantifiers {
     public static RiotString oneOrNone(RiotString ritex) {
         return ritex.wholeThingOptional();
     }
-    public static RiotString oneOrNone(String expression) {
-        return oneOrNone(lazyRiot(expression));
+    public static <T extends RiotString.RiotStringable>RiotString oneOrNone(T expression) {
+        return oneOrNone(expression.toRiotString());
+    }
+    public static <T>RiotString oneOrNone(T expression) {
+        return oneOrNone(lazyRiot(expression.toString()));
     }
     public static RiotString zeroOrMore(RiotString ritex) {
         return ritex.wholeZeroOrMoreTimes();
     }
-    public static RiotString zeroOrMore(String expression) {
-        return zeroOrMore(lazyRiot(expression));
+    public static <T extends RiotString.RiotStringable> RiotString zeroOrMore(T expression) {
+        return zeroOrMore(expression.toRiotString());
+    }
+    public static <T>RiotString zeroOrMore(T expression) {
+        return zeroOrMore(lazyRiot(expression.toString()));
     }
     public static RiotString oneOrMore(RiotString ritex) {
         return ritex.wholeOnceOrMoreTimes();
     }
-    public static RiotString oneOrMore(String expression) {
-        return oneOrMore(lazyRiot(expression));
+    public static <T extends RiotString.RiotStringable>RiotString oneOrMore(T expression) {
+        return oneOrMore(expression.toRiotString());
+    }
+    public static <T>RiotString oneOrMore(T expression) {
+        return oneOrMore(lazyRiot(expression.toString()));
     }
 }

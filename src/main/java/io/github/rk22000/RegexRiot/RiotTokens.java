@@ -2,10 +2,11 @@ package io.github.rk22000.RegexRiot;
 
 import java.util.List;
 
+import static io.github.rk22000.RegexRiot.RiotSet.inclusiveRiotSetOf;
 import static io.github.rk22000.RegexRiot.RiotStringImplementations.newLazyRiot;
 
 public interface RiotTokens {
-    public static final RiotString
+    RiotString
             DIGIT   = newLazyRiot("\\d", true),
             DOT     = newLazyRiot("\\.", true),
             ANY_CHAR    = newLazyRiot("."),
@@ -13,7 +14,19 @@ public interface RiotTokens {
             OPEN_BRACKET    = newLazyRiot("\\(", true),
             CLOSE_BRACKET   = newLazyRiot("\\)", true),
             LINE_START  = newLazyRiot("^", false),
-            Line_END    = newLazyRiot("$", false);
+            Line_END    = newLazyRiot("$", false),
+            HEX = inclusiveRiotSetOf()
+                    .chars(DIGIT)
+                    .chars('a').through('f')
+                    .chars('A').through('F').toRiotString(),
+            HEX_LOWER = inclusiveRiotSetOf()
+                    .chars(DIGIT)
+                    .chars('a').through('f').toRiotString(),
+            HEX_UPPER = inclusiveRiotSetOf()
+                    .chars(DIGIT)
+                    .chars('A').through('F').toRiotString();
+    int
+            UNLIMITED=-1;
 
 }
 //    public static final RiotString
