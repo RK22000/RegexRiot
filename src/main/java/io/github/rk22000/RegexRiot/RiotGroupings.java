@@ -1,9 +1,9 @@
 package io.github.rk22000.RegexRiot;
 
-import static io.github.rk22000.RegexRiot.Riot.riot;
+import static io.github.rk22000.RegexRiot.RiotStringImplementations.newLazyRiot;
 
 public interface RiotGroupings {
     static RiotString group(int groupNo) {
-        return riot("\\"+groupNo, true);
+        return newLazyRiot("\\"+groupNo, true);
     }
 }

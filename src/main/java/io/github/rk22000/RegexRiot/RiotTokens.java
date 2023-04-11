@@ -1,31 +1,41 @@
 package io.github.rk22000.RegexRiot;
 
-import static io.github.rk22000.RegexRiot.BasicRiotString.emptyBasicRiotString;
-import static io.github.rk22000.RegexRiot.Riot.riot;
-import static io.github.rk22000.RegexRiot.RiSet.chars;
-import static io.github.rk22000.RegexRiot.RiSet.riotSet;
+import java.util.List;
 
-public class RiotTokens {
+import static io.github.rk22000.RegexRiot.RiotStringImplementations.newLazyRiot;
+
+public interface RiotTokens {
     public static final RiotString
-            DIGIT   = riot("\\d", true),
-            DOT     = riot("\\.", true),
-            ANY_CHAR    = riot(".", true),
-            WORD_CHAR   = riot("\\w", true),
-            OPEN_BRACKET    = riot("\\(", true),
-            CLOSE_BRACKET   = riot("\\)", true),
-            LINE_START  = riot("^", false),
-            Line_END    = riot("$", false),
-            EMPTY   = riot(emptyBasicRiotString()),
-            HEX = riotSet()
-                    .include(DIGIT)
-                    .include(chars('a').through('f'))
-                    .include(chars('A').through('F')),
-            HEX_UPPER = riotSet()
-                    .include(DIGIT)
-                    .include(chars('A').through('F')),
-            HEX_LOWER = riotSet()
-                    .include(DIGIT)
-                    .include(chars('a').through('f'));
-    public static final int
-            UNLIMITED=-1;
+            DIGIT   = newLazyRiot("\\d", true),
+            DOT     = newLazyRiot("\\.", true),
+            ANY_CHAR    = newLazyRiot("."),
+            WORD_CHAR   = newLazyRiot("\\w", true),
+            OPEN_BRACKET    = newLazyRiot("\\(", true),
+            CLOSE_BRACKET   = newLazyRiot("\\)", true),
+            LINE_START  = newLazyRiot("^", false),
+            Line_END    = newLazyRiot("$", false);
+
 }
+//    public static final RiotString
+//            DIGIT   = riot("\\d", true),
+//            DOT     = riot("\\.", true),
+//            ANY_CHAR    = riot(".", true),
+//            WORD_CHAR   = riot("\\w", true),
+//            OPEN_BRACKET    = riot("\\(", true),
+//            CLOSE_BRACKET   = riot("\\)", true),
+//            LINE_START  = riot("^", false),
+//            Line_END    = riot("$", false),
+////            EMPTY   = riot(emptyBasicRiotString()),
+//            HEX = riotSet()
+//                    .include(DIGIT)
+//                    .include(chars('a').through('f'))
+//                    .include(chars('A').through('F')),
+//            HEX_UPPER = riotSet()
+//                    .include(DIGIT)
+//                    .include(chars('A').through('F')),
+//            HEX_LOWER = riotSet()
+//                    .include(DIGIT)
+//                    .include(chars('a').through('f'));
+//    public static final int
+//            UNLIMITED=-1;
+//}

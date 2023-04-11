@@ -1,33 +1,27 @@
 package io.github.rk22000.RegexRiot;
 
-import static io.github.rk22000.RegexRiot.Riot.riot;
 
-public interface RiotQuantifiers {
-    static RiotString oneOrNone(RiotString ritex) {
+import java.util.function.Function;
+
+import static io.github.rk22000.RegexRiot.RiotString.lazyRiot;
+
+public class RiotQuantifiers {
+    public static RiotString oneOrNone(RiotString ritex) {
         return ritex.wholeThingOptional();
     }
-    static RiotString oneOrNone(String expression) {
-        return oneOrNone(riot(expression));
+    public static RiotString oneOrNone(String expression) {
+        return oneOrNone(lazyRiot(expression));
     }
-    static RiotString zeroOrMore(RiotString ritex) {
-        if (ritex.isNotUnitChain()) ritex = ritex.wholeThingGrouped();
-        return ritex.and("*");
+    public static RiotString zeroOrMore(RiotString ritex) {
+        return ritex.wholeZeroOrMoreTimes();
     }
-    static RiotString zeroOrMore(RiSet riSet) {
-        return zeroOrMore(riSet.toRiotString());
+    public static RiotString zeroOrMore(String expression) {
+        return zeroOrMore(lazyRiot(expression));
     }
-    static RiotString zeroOrMore(String expression) {
-        return zeroOrMore(riot(expression));
+    public static RiotString oneOrMore(RiotString ritex) {
+        return ritex.wholeOnceOrMoreTimes();
     }
-    static RiotString oneOrMore(RiotString ritex) {
-        if (ritex.isNotUnitChain()) ritex = ritex.wholeThingGrouped();
-        return ritex.and("+");
+    public static RiotString oneOrMore(String expression) {
+        return oneOrMore(lazyRiot(expression));
     }
-    static RiotString oneOrMore(String expression) {
-        return oneOrMore(riot(expression));
-    }
-    static RiotString oneOrMore(RiSet riSet) {
-        return oneOrMore(riSet.toRiotString());
-    }
-
 }
