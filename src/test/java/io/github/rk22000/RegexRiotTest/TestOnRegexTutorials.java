@@ -322,13 +322,13 @@ public class TestOnRegexTutorials {
      */
     @Test
     void EX16_IPV6address() {
-        ritex = HEX_LOWER.times(1, 4)
+        ritex = HEX_LOWER.toRiotString().times(1, 4)
                 .and(
-                        riot(":").and(HEX_LOWER.times(0, 4))
+                        riot(":").and(HEX_LOWER.toRiotString().times(0, 4))
                                 .wholeTimes(1, 6)
                 )
                 .and(":")
-                .and(HEX_LOWER.times(1, 4));
+                .and(HEX_LOWER.toRiotString().times(1, 4));
         answer = "[\\da-f]{1,4}(?::[\\da-f]{0,4}){1,6}:[\\da-f]{1,4}";
         check();
     }
@@ -349,9 +349,51 @@ public class TestOnRegexTutorials {
     void EX17_valid32_24HexColors() {
         ritex = riot("#")
                 .and(HEX).times(6)
-                .and(HEX).times(2).optionally();
-        System.err.println(ritex);
-        assert false: "Gotta resolve a RiotSet Issue before this";
+                .and(HEX).times(2).optionally()
+                .followedBy(HEX.complement());
+        answer = "#[\\da-fA-F]{6}(?:[\\da-fA-F]{2})?(?=[^\\da-fA-F])";
+        check();
+    }
+
+    /**
+     * <a href="http://regextutorials.com/excercise.html?Extract%20query%20string%20from%20URL">
+     *     Extract query string from URL
+     * </a>
+     * Match the URL parameters in the form param : value
+     * <br>
+     * http://www.learnregexp.com?excercise=extract query from URL
+     * https://www.google.com/search?q=regexp
+     * http://pitchimprover.com/index.php?type=Perfect
+     * http://www.learnregexp.com?excercise=extract-host-from-URL
+     */
+    @Test
+    void EX19_extractURL_Query() {
+        ritex = riot(QUESTION_MARK)
+                .and(oneOrMore(WORD_CHAR))
+                .and("=")
+                .and(oneOrMore(ANY_CHAR));
+        answer = "\\?\\w+=.+";
+        check();
+    }
+
+    /**
+     * <a href="http://regextutorials.com/excercise.html?Extract%20host%20from%20URL">
+     *     Extract host from URL
+     * </a>
+     * Extract the host from URL
+     * <br>
+     * http://www.learnregexp.com?excercise=extract query from URL
+     * https://www.google.com/search?q=regexp
+     * http://pitchimprover.com/index.php?type=Perfect
+     * http://www.learnregexp.com?excercise=extract host from URL
+     */
+    @Test
+    void EX20_extractURL_host() {
+        ritex = riot("http")
+                .and("://")
+                .and(oneOrMore(exclusiveRiotSetOf().chars(QUESTION_MARK).chars("/")));
+        answer = "http://[^\\?/]+";
+        check();
     }
 
 }

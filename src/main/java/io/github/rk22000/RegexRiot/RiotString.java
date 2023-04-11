@@ -57,6 +57,14 @@ public interface RiotString {
     default boolean isNotUnitChain() {
         return !isUnitChain();
     }
+
+    RiotString followedBy(RiotString extension);
+    default <T extends RiotStringable> RiotString followedBy(T expression) {
+        return followedBy(expression.toRiotString());
+    }
+    default <T> RiotString followedBy(T expression) {
+        return followedBy(riotString(expression.toString()));
+    }
 }
 
 class RiotStringImplementations {
@@ -329,6 +337,16 @@ class RiotStringImplementations {
         @Override
         public boolean isUnitChain() {
             return unitChained;
+        }
+
+        @Override
+        public RiotString followedBy(RiotString extension) {
+            return new LazyRiotString(
+                    this,
+                    (LazyRiotString) extension,
+                    (p,s) -> ""+p+"(?="+s+")",
+                    false
+            );
         }
     }
 }

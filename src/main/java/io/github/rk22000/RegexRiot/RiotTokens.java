@@ -13,18 +13,20 @@ public interface RiotTokens {
             WORD_CHAR   = newLazyRiot("\\w", true),
             OPEN_BRACKET    = newLazyRiot("\\(", true),
             CLOSE_BRACKET   = newLazyRiot("\\)", true),
-            LINE_START  = newLazyRiot("^", false),
-            Line_END    = newLazyRiot("$", false),
+            LINE_START  = newLazyRiot("^", true),
+            Line_END    = newLazyRiot("$", true),
+            QUESTION_MARK = newLazyRiot("\\?", true);
+    RiotSet
             HEX = inclusiveRiotSetOf()
                     .chars(DIGIT)
                     .chars('a').through('f')
-                    .chars('A').through('F').toRiotString(),
+                    .chars('A').through('F'),
             HEX_LOWER = inclusiveRiotSetOf()
                     .chars(DIGIT)
-                    .chars('a').through('f').toRiotString(),
+                    .chars('a').through('f'),
             HEX_UPPER = inclusiveRiotSetOf()
                     .chars(DIGIT)
-                    .chars('A').through('F').toRiotString();
+                    .chars('A').through('F');
     int
             UNLIMITED=-1;
 
