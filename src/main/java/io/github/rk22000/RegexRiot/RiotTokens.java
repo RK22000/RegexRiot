@@ -1,8 +1,7 @@
 package io.github.rk22000.RegexRiot;
 
-import java.util.List;
-
-import static io.github.rk22000.RegexRiot.RiotSet.inclusiveRiotSetOf;
+import static io.github.rk22000.RegexRiot.RiotQuantifiers.oneOrMore;
+import static io.github.rk22000.RegexRiot.RiotSet.include;
 import static io.github.rk22000.RegexRiot.RiotStringImplementations.newLazyRiot;
 
 public interface RiotTokens {
@@ -16,16 +15,19 @@ public interface RiotTokens {
             LINE_START  = newLazyRiot("^", true),
             Line_END    = newLazyRiot("$", true),
             QUESTION_MARK = newLazyRiot("\\?", true),
-            BOUNDARY = newLazyRiot("\\b", true);
+            BOUNDARY = newLazyRiot("\\b", true),
+            SPACE = newLazyRiot("\\s", true),
+            SPACES = oneOrMore(SPACE),
+            PLUS = newLazyRiot("\\+", true);
     RiotSet
-            HEX = inclusiveRiotSetOf()
+            HEX = include()
                     .chars(DIGIT)
                     .chars('a').through('f')
                     .chars('A').through('F'),
-            HEX_LOWER = inclusiveRiotSetOf()
+            HEX_LOWER = include()
                     .chars(DIGIT)
                     .chars('a').through('f'),
-            HEX_UPPER = inclusiveRiotSetOf()
+            HEX_UPPER = include()
                     .chars(DIGIT)
                     .chars('A').through('F');
     int

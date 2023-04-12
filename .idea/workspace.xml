@@ -7,6 +7,7 @@
     <list default="true" id="9c408116-9517-43a7-a7a4-bc833152cbaa" name="Changes" comment="enabled Riotset and stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotGroupings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotGroupings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotSet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTokens.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTokens.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestOnRegexTutorials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestOnRegexTutorials.java" afterDir="false" />
     </list>
@@ -83,7 +84,7 @@
       <recent name="io.github.rk22000" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TestOnRegexTutorials.EX14_pascalToCStyleParameters">
+  <component name="RunManager" selected="Gradle.TestOnRegexTutorials">
     <configuration name="TestOnRegexTutorials" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -107,7 +108,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestOnRegexTutorials.EX11_changeDateFormat" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestOnRegexTutorials.EX13_validate12hFormat" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -120,7 +121,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX11_changeDateFormat&quot;" />
+            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX13_validate12hFormat&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -153,7 +154,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestOnRegexTutorials.EX8_cutNumbersTwoDecimal" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestOnRegexTutorials.EX15_variableInitializationStyle" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -166,7 +167,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX8_cutNumbersTwoDecimal&quot;" />
+            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX15_variableInitializationStyle&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -176,7 +177,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestOnRegexTutorials.EX9_digitCommaFormatting" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestOnRegexTutorials.EX18_operatorReplacedByFunc" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -189,7 +190,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX9_digitCommaFormatting&quot;" />
+            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX18_operatorReplacedByFunc&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -201,11 +202,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.TestOnRegexTutorials.EX14_pascalToCStyleParameters" />
-        <item itemvalue="Gradle.TestOnRegexTutorials.EX11_changeDateFormat" />
-        <item itemvalue="Gradle.TestOnRegexTutorials.EX9_digitCommaFormatting" />
         <item itemvalue="Gradle.TestOnRegexTutorials" />
-        <item itemvalue="Gradle.TestOnRegexTutorials.EX8_cutNumbersTwoDecimal" />
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX18_operatorReplacedByFunc" />
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX15_variableInitializationStyle" />
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX13_validate12hFormat" />
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX14_pascalToCStyleParameters" />
       </list>
     </recent_temporary>
   </component>

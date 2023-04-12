@@ -10,10 +10,10 @@ import static io.github.rk22000.RegexRiot.RiotStringImplementations.newLazyRiot;
 //import static io.github.rk22000.RegexRiot.RiotTypedSet.InclusiveSet.riotInclude;
 //
 public interface RiotSet extends RiotString.RiotStringable {
-    static RiotSet inclusiveRiotSetOf() {
+    static RiotSet include() {
         return RiotSetImplementations.lazyInclusiveSetOf();
     }
-    static RiotSet exclusiveRiotSetOf() {
+    static RiotSet exclude() {
         return RiotSetImplementations.lazyExclusiveSetOf();
     }
     <T>RiotSet chars(T extension);
