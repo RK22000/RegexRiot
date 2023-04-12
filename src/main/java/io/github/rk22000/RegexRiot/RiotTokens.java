@@ -15,7 +15,8 @@ public interface RiotTokens {
             CLOSE_BRACKET   = newLazyRiot("\\)", true),
             LINE_START  = newLazyRiot("^", true),
             Line_END    = newLazyRiot("$", true),
-            QUESTION_MARK = newLazyRiot("\\?", true);
+            QUESTION_MARK = newLazyRiot("\\?", true),
+            BOUNDARY = newLazyRiot("\\b", true);
     RiotSet
             HEX = inclusiveRiotSetOf()
                     .chars(DIGIT)

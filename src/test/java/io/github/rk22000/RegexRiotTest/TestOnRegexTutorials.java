@@ -3,8 +3,11 @@ package io.github.rk22000.RegexRiotTest;
 import io.github.rk22000.RegexRiot.RiotString;
 import org.junit.jupiter.api.Test;
 
+import java.util.Dictionary;
+
 import static io.github.rk22000.RegexRiot.Riot.riot;
 import static io.github.rk22000.RegexRiot.RiotGroupings.group;
+import static io.github.rk22000.RegexRiot.RiotGroupings.replacementGroup;
 import static io.github.rk22000.RegexRiot.RiotQuantifiers.oneOrMore;
 import static io.github.rk22000.RegexRiot.RiotQuantifiers.zeroOrMore;
 import static io.github.rk22000.RegexRiot.RiotSet.exclusiveRiotSetOf;
@@ -182,11 +185,15 @@ public class TestOnRegexTutorials {
      */
     @Test
     void EX6_removeRepeatWords() {
-        assert false: "Nope, Just Nope. I've got no clue for now how to test this. ATB Future me!";
-        /*
-        Replace regex:( [^ ]+)\1
-        with         :$1
-         */
+        var pattern = riot("\\b").and(oneOrMore(exclusiveRiotSetOf().chars(" "))).wholeThingGrouped().and(" ").and(group(1)).compile();
+        var raw = "It was a chilly November afternoon. I had just just consummated an unusually hearty dinner, of which the dyspeptic truffe formed not the least important item, and was sitting alone in the dining-room dining-room, with my feet upon the the fender, and at my elbow a small table which I had rolled up to the fire, and upon which were some apologies for dessert, with some miscellaneous bottles bottles of wine, spirit and liqueur. In the morning I had had been reading Glover's \"Leonidas\", Wilkie's Wilkie's \"Epigoniad\", Lamartine's \"Pilgrimage\", Barlow's \"Columbiad\", Tuckermann's \"Sicily\", and Griswold's \"Curiosities\" ; I am willing to confess, therefore, that I now felt a little stupid.";
+        var correct = "It was a chilly November afternoon. I had just consummated an unusually hearty dinner, of which the dyspeptic truffe formed not the least important item, and was sitting alone in the dining-room, with my feet upon the fender, and at my elbow a small table which I had rolled up to the fire, and upon which were some apologies for dessert, with some miscellaneous bottles of wine, spirit and liqueur. In the morning I had been reading Glover's \"Leonidas\", Wilkie's \"Epigoniad\", Lamartine's \"Pilgrimage\", Barlow's \"Columbiad\", Tuckermann's \"Sicily\", and Griswold's \"Curiosities\" ; I am willing to confess, therefore, that I now felt a little stupid.";
+        var replaced = pattern.matcher(raw).replaceAll(replacementGroup(1).toString());
+        System.err.println("Expected: "+correct);
+        System.err.println("Actual  : "+replaced);
+        System.err.println("RAW     : "+raw);
+        System.err.println(pattern.pattern());
+        assert replaced.equals(correct);
     }
 
     /**
@@ -236,7 +243,60 @@ public class TestOnRegexTutorials {
      */
     @Test
     void EX8_cutNumbersTwoDecimal() {
-        assert false: "Nope. Not yet";
+        var raw = """
+                1 Euro = 1.351299 US Dollar
+                British Pound = 1.614873 US Dollar
+                Australian Dollar = 0.916063 US Dollar
+                Canadian Dollar = 0.947400 US Dollar
+                Emirati Dirham = 0.272257 US Dollar
+                Swiss Franc = 1.096267 US Dollar
+                Chinese Yuan = 0.164114 US Dollar
+                Malaysian Ringgit = 0.310681 US Dollar
+                New Zealand Dollar = 0.819950 US Dollar""";
+        var correct = """
+                1 Euro = 1.35 US Dollar
+                British Pound = 1.61 US Dollar
+                Australian Dollar = 0.91 US Dollar
+                Canadian Dollar = 0.94 US Dollar
+                Emirati Dirham = 0.27 US Dollar
+                Swiss Franc = 1.09 US Dollar
+                Chinese Yuan = 0.16 US Dollar
+                Malaysian Ringgit = 0.31 US Dollar
+                New Zealand Dollar = 0.81 US Dollar""";
+        var replaced = oneOrMore(DIGIT).and(DOT).and(DIGIT).times(1,2).wholeThingGrouped().and(oneOrMore(DIGIT))
+                .compile().matcher(raw).replaceAll(replacementGroup(1).toString());
+        assert replaced.equals(correct);
+    }
+
+    @Test
+    void EX9_digitCommaFormatting() {
+        var raw = """
+                Ten Countries with the Highest Population:
+                1 China 1361220000
+                2 India 1236800000
+                3 United States 317121000
+                4 Indonesia 237641326
+                5 Brazil 201032714
+                6 Pakistan 184872000
+                7 Nigeria 173615000
+                8 Bangladesh 152518015
+                9 Russia 143600000
+                10 Japan 127290000""";
+        var correct = """
+                Ten Countries with the Highest Population:
+                1 China 1,361,220,000
+                2 India 1,236,800,000
+                3 United States 317,121,000
+                4 Indonesia 237,641,326
+                5 Brazil 201,032,714
+                6 Pakistan 184,872,000
+                7 Nigeria 173,615,000
+                8 Bangladesh 152,518,015
+                9 Russia 143,600,000
+                10 Japan 127,290,000""";
+        var replaced = DIGIT.times(1,3).grouped().followedBy(oneOrMore(DIGIT.times(3)).and(BOUNDARY))
+                .compile().matcher(raw).replaceAll(replacementGroup(1).and(",").toString());
+        assert replaced.equals(correct);
     }
 
     /**
@@ -264,6 +324,39 @@ public class TestOnRegexTutorials {
                 .and(CLOSE_BRACKET);
         answer = "function [a-z]\\w+\\([^\\)]*\\)";
         check();
+    }
+
+    @Test
+    void EX11_changeDateFormat() {
+        var raw = """
+                Robert Boyle 1627-01-25 — 1691-12-31
+                Antoine Lavoisier 1743-08-26 — 1794-05-08
+                Michael Faraday 1791-09-22 — 1867-06-25
+                Louis Pasteur 1822-12-27 — 1895-09-28
+                Alfred Nobel 1833-10-21 — 1896-12-10
+                Dmitri Mendeleev 1834-02-08 — 1907-02-02
+                Marie Curie 1867-11-07 — 1934-07-04
+                Linus Pauling 1901-02-28 — 1994-08-19""";
+        var correct = """
+                Robert Boyle 25.01.1627 — 31.12.1691
+                Antoine Lavoisier 26.08.1743 — 08.05.1794
+                Michael Faraday 22.09.1791 — 25.06.1867
+                Louis Pasteur 27.12.1822 — 28.09.1895
+                Alfred Nobel 21.10.1833 — 10.12.1896
+                Dmitri Mendeleev 08.02.1834 — 02.02.1907
+                Marie Curie 07.11.1867 — 04.07.1934
+                Linus Pauling 28.02.1901 — 19.08.1994""";
+        var replaced = DIGIT.times(4).grouped().and("-")
+                .and(DIGIT).times(2).grouped().and("-")
+                .and(DIGIT).times(2).grouped()
+
+                .compile().matcher(raw)
+                .replaceAll(
+                        replacementGroup(3).and(DOT)
+                                .and(replacementGroup(2)).and(DOT)
+                                .and(replacementGroup(1)).toString()
+                );
+        assert replaced.equals(correct);
     }
 
     /**
@@ -305,6 +398,40 @@ public class TestOnRegexTutorials {
                 .and(inclusiveRiotSetOf().chars("012345").andThen(DIGIT));
         answer = "([01]\\d|2[0123]):[012345]\\d";
         check();
+    }
+
+    @Test
+    void EX14_pascalToCStyleParameters() {
+        var raw = """
+                void Foo(int x; float y; char z)
+                {
+                write(x, y, z);
+                }
+                                
+                int Avg(List<int> l; int count)
+                {
+                return Sum(l, count)/count;
+                }""";
+        var correct = """
+                void Foo(int x, float y, char z)
+                {
+                write(x, y, z);
+                }
+                                
+                int Avg(List<int> l, int count)
+                {
+                return Sum(l, count)/count;
+                }""";
+        ritex = riot(";").followedBy(oneOrMore(exclusiveRiotSetOf().chars(OPEN_BRACKET)).and(CLOSE_BRACKET));
+        var replaced = ritex
+                .compile().matcher(raw).replaceAll(",");
+        System.err.println("----");
+        System.err.println(replaced);
+        System.err.println("-----");
+        System.err.println(correct);
+        System.err.println("------");
+        System.err.println(ritex);
+        assert replaced.equals(correct);
     }
 
     /**

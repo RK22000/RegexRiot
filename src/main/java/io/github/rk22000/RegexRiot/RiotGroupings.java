@@ -6,4 +6,7 @@ public interface RiotGroupings {
     static RiotString group(int groupNo) {
         return newLazyRiot("\\"+groupNo, true);
     }
+    static RiotString replacementGroup(int groupNo) {
+        return newLazyRiot("$"+groupNo, true);
+    }
 }
