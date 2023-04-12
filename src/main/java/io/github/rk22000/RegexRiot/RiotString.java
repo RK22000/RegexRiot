@@ -1,6 +1,7 @@
 package io.github.rk22000.RegexRiot;
 
 import java.util.function.BiFunction;
+import java.util.regex.Pattern;
 
 import static io.github.rk22000.RegexRiot.RiotTokens.UNLIMITED;
 
@@ -64,6 +65,16 @@ public interface RiotString {
     }
     default <T> RiotString followedBy(T expression) {
         return followedBy(riotString(expression.toString()));
+    }
+    RiotString followedByNot(RiotString expression);
+    default <T extends RiotStringable> RiotString followedByNot(T expression) {
+        return followedByNot(expression.toRiotString());
+    }
+    default <T> RiotString followedByNot(T expression) {
+        return followedByNot(riotString(expression.toString()));
+    }
+    default Pattern compile() {
+        return Pattern.compile(toString());
     }
 }
 
@@ -345,6 +356,16 @@ class RiotStringImplementations {
                     this,
                     (LazyRiotString) extension,
                     (p,s) -> ""+p+"(?="+s+")",
+                    false
+            );
+        }
+
+        @Override
+        public RiotString followedByNot(RiotString expression) {
+            return new LazyRiotString(
+                    this,
+                    (LazyRiotString) expression,
+                    (p,s) -> ""+p+"(?!"+s+")",
                     false
             );
         }

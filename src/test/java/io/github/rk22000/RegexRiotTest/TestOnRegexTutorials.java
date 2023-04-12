@@ -396,5 +396,27 @@ public class TestOnRegexTutorials {
         check();
     }
 
+    /**
+     * <a href="http://regextutorials.com/excercise.html?Strings%20not%20containing%20word">
+     *     Strings not containing word
+     * </a>
+     * Match all recipes that do not contain the word 'chocolate' (recipes are separated by newline)
+     * <br>
+     * Cake 1: sugar, flour, cocoa powder, baking powder, baking soda, salt, eggs, milk, vegetable oil, vanilla extract, chocolate chips
+     * Cake 2: cream cheese, sugar, vanilla extract, crescent rolls, cinnamon, butter, honey
+     * Cake 3: dark chocolate cake mix, instant chocolate pudding mix, sour cream, eggs, vegetable oil, coffee liqueur
+     * Cake 4: flour, baking powder, salt, cinnamon, butter, sugar, egg, vanilla extract, milk, chopped walnuts
+     * Cake 5: gingersnap cookies, chopped pecans, butter, cream cheese, sugar, vanilla extract, eggs, canned pumpkin, cinnamon
+     * Cake 6: flour, baking soda, sea salt, butter, white sugar, brown sugar, eggs, vanilla extract, chocolate chips, canola oil
+     * Cake 7: wafers, cream cheese, sugar, eggs, vanilla extract, cherry pie filling
+     */
+    @Test
+    void EX21_stringWithNoChocolate() {
+        ritex = LINE_START
+                .followedByNot(oneOrMore(ANY_CHAR).and("chocolate"))
+                .and(ANY_CHAR).onceOrMoreTimes();
+        answer = "^(?!.+chocolate).+";
+        check();
+    }
 }
 

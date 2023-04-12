@@ -7,7 +7,6 @@
     <list default="true" id="9c408116-9517-43a7-a7a4-bc833152cbaa" name="Changes" comment="enabled Riotset and stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTokens.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTokens.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestOnRegexTutorials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestOnRegexTutorials.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,8 +82,8 @@
       <recent name="io.github.rk22000" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TestOnRegexTutorials.EX20_extractURL_host">
-    <configuration name="TestOnRegexTutorials.EX12_validate24hFormat" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.TestOnRegexTutorials.EX21_stringWithNoChocolate">
+    <configuration name="TestOnRegexTutorials" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -97,30 +96,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX12_validate24hFormat&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="TestOnRegexTutorials.EX16_IPV6address" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX16_IPV6address&quot;" />
+            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -199,13 +175,36 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="TestOnRegexTutorials.EX21_stringWithNoChocolate" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX21_stringWithNoChocolate&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX21_stringWithNoChocolate" />
+        <item itemvalue="Gradle.TestOnRegexTutorials" />
         <item itemvalue="Gradle.TestOnRegexTutorials.EX20_extractURL_host" />
         <item itemvalue="Gradle.TestOnRegexTutorials.EX19_extractURL_Query" />
         <item itemvalue="Gradle.TestOnRegexTutorials.EX17_valid32_24HexColors" />
-        <item itemvalue="Gradle.TestOnRegexTutorials.EX16_IPV6address" />
-        <item itemvalue="Gradle.TestOnRegexTutorials.EX12_validate24hFormat" />
       </list>
     </recent_temporary>
   </component>
