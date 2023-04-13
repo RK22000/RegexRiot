@@ -18,12 +18,12 @@ public interface RiotString {
      * @return a new RiotString of the same type as the current type but with the value of seed
      */
     RiotString riotString(String seed);
-    <T extends RiotString> RiotString and(T extension);
-    default <T extends RiotStringable> RiotString and(T extension) {
-        return and(extension.toRiotString());
+    <T extends RiotString> RiotString then(T extension);
+    default <T extends RiotStringable> RiotString then(T extension) {
+        return then(extension.toRiotString());
     }
-    default <T> RiotString and(T extension) {
-        return and(riotString(extension.toString()));
+    default <T> RiotString then(T extension) {
+        return then(riotString(extension.toString()));
     }
     <T extends RiotString> RiotString or(T extension);
     default <T extends RiotStringable> RiotString or(T extension) {
@@ -34,8 +34,20 @@ public interface RiotString {
     }
     RiotString wholeTimes(int n);
     RiotString wholeTimes(int atleast, int atmoast);
+    default RiotString wholeAtLeast(int n) {
+        return wholeTimes(n, UNLIMITED);
+    }
+    default RiotString wholeAtMost(int n) {
+        return wholeTimes(UNLIMITED, n);
+    }
     RiotString times(int n);
     RiotString times(int atleast, int almost);
+    default RiotString atLeast(int n) {
+        return times(n, UNLIMITED);
+    }
+    default RiotString atMost(int n) {
+        return times(UNLIMITED, n);
+    }
     RiotString wholeThingGrouped();
     RiotString grouped();
     RiotString wholeThingGroupedAndForgotten();
@@ -125,7 +137,7 @@ class RiotStringImplementations {
         }
 
         @Override
-        public <T extends RiotString> RiotString and(T extension) {
+        public <T extends RiotString> RiotString then(T extension) {
             return new LazyRiotString(
                     this,
                     (LazyRiotString) extension,

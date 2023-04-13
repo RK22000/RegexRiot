@@ -9,14 +9,14 @@ class RiotStringTest {
     void and() {
         var rs = lazyRiot("Hello");
         assert rs.toString().equals("Hello");
-        assert rs.and(" World").toString().equals("Hello World");
-        assert rs.and(lazyRiot(" World")).toString().equals("Hello World");
+        assert rs.then(" World").toString().equals("Hello World");
+        assert rs.then(lazyRiot(" World")).toString().equals("Hello World");
     }
 
     @Test
     void or() {
         assert lazyRiot("Hello ")
-                .and("World")
+                .then("World")
                 .or("There")
                 .or(lazyRiot("General"))
                 .toString().equals("Hello World|There|General");
@@ -27,13 +27,13 @@ class RiotStringTest {
     }
     @Test
     void wholeThingGroupedAndForgotten() {
-        var rs = lazyRiot("Hello").and(" World").wholeThingGroupedAndForgotten();
+        var rs = lazyRiot("Hello").then(" World").wholeThingGroupedAndForgotten();
         check(rs.toString(), "(?:Hello World)");
     }
     @Test
     void groupedAndForgotten() {
         check(
-                lazyRiot("Hello ").and("World").groupedAndForgotten().toString(),
+                lazyRiot("Hello ").then("World").groupedAndForgotten().toString(),
                 "Hello (?:World)"
         );
     }
@@ -94,7 +94,7 @@ class RiotStringTest {
                 "(?:ab)?"
         );
         check(
-                lazyRiot("a").and("b").wholeThingOptional(),
+                lazyRiot("a").then("b").wholeThingOptional(),
                 "(?:ab)?"
         );
     }
@@ -109,7 +109,7 @@ class RiotStringTest {
                 "(?:ab)?"
         );
         check(
-                lazyRiot("a").and("b").optionally(),
+                lazyRiot("a").then("b").optionally(),
                 "ab?"
         );
     }

@@ -5,7 +5,7 @@ public class Riot {
         return RiotString.lazyRiot(seed);//new ChildRiotString(new BasicRiotString(seed));
     }
     public static RiotString riot(RiotString seed) {
-        return riot("").and(seed);
+        return riot("").then(seed);
     }
     public static <T extends RiotString.RiotStringable> RiotString riot(T seed) {
         return seed.toRiotString();

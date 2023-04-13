@@ -1,35 +1,44 @@
 package io.github.rk22000.RegexRiot;
 
 import static io.github.rk22000.RegexRiot.RiotQuantifiers.oneOrMore;
-import static io.github.rk22000.RegexRiot.RiotSet.include;
+import static io.github.rk22000.RegexRiot.RiotSet.inSetOf;
 import static io.github.rk22000.RegexRiot.RiotStringImplementations.newLazyRiot;
 
 public interface RiotTokens {
+    // TODO: Identify which tokens are save to use as arguments to RiotSet.chars() and which are not
+    /**
+     * This should be safe to use as argument to use as Argument to RiotSet.chars()
+     */
+    // TODO: create RiotSetable interface and make these tokens implement it
     RiotString
             DIGIT   = newLazyRiot("\\d", true),
             DOT     = newLazyRiot("\\.", true),
-            ANY_CHAR    = newLazyRiot("."),
             WORD_CHAR   = newLazyRiot("\\w", true),
-            OPEN_BRACKET    = newLazyRiot("\\(", true),
-            CLOSE_BRACKET   = newLazyRiot("\\)", true),
-            LINE_START  = newLazyRiot("^", true),
-            Line_END    = newLazyRiot("$", true),
+            OPEN_BRACE = newLazyRiot("\\(", true),
+            CLOSE_BRACE = newLazyRiot("\\)", true),
+            OPEN_SQ_BRACE = newLazyRiot("\\[", true),
+            CLOSE_SQ_BRACE = newLazyRiot("\\]", true),
             QUESTION_MARK = newLazyRiot("\\?", true),
             BOUNDARY = newLazyRiot("\\b", true),
             SPACE = newLazyRiot("\\s", true),
             SPACES = oneOrMore(SPACE),
             PLUS = newLazyRiot("\\+", true);
+    /**
+     * This is not safe to use as arguments to RiotSet.chars()
+     */
+
+    RiotString
+            ANY_CHAR    = newLazyRiot("."),
+            LINE_START  = newLazyRiot("^", true),
+            Line_END    = newLazyRiot("$", true);
     RiotSet
-            HEX = include()
-                    .chars(DIGIT)
-                    .chars('a').through('f')
-                    .chars('A').through('F'),
-            HEX_LOWER = include()
-                    .chars(DIGIT)
-                    .chars('a').through('f'),
-            HEX_UPPER = include()
-                    .chars(DIGIT)
-                    .chars('A').through('F');
+            HEX = inSetOf(DIGIT)
+                    .andChars('a').through('f')
+                    .andChars('A').through('F'),
+            HEX_LOWER = inSetOf(DIGIT)
+                    .andChars('a').through('f'),
+            HEX_UPPER = inSetOf(DIGIT)
+                    .andChars('A').through('F');
     int
             UNLIMITED=-1;
 

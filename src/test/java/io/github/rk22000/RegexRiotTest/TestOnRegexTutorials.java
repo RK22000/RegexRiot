@@ -8,8 +8,8 @@ import static io.github.rk22000.RegexRiot.RiotGroupings.group;
 import static io.github.rk22000.RegexRiot.RiotGroupings.replacementGroup;
 import static io.github.rk22000.RegexRiot.RiotQuantifiers.oneOrMore;
 import static io.github.rk22000.RegexRiot.RiotQuantifiers.zeroOrMore;
-import static io.github.rk22000.RegexRiot.RiotSet.exclude;
-import static io.github.rk22000.RegexRiot.RiotSet.include;
+import static io.github.rk22000.RegexRiot.RiotSet.outSetOf;
+import static io.github.rk22000.RegexRiot.RiotSet.inSetOf;
 import static io.github.rk22000.RegexRiot.RiotTokens.*;
 
 /**
@@ -33,7 +33,7 @@ public class TestOnRegexTutorials {
     @Test
     void EX1_FloatingPointNumbers() {
         answer = "\\d+\\.\\d+";
-        ritex = oneOrMore(DIGIT).and(DOT).and(oneOrMore(DIGIT));
+        ritex = oneOrMore(DIGIT).then(DOT).then(oneOrMore(DIGIT));
         System.out.println(ritex);
         check();
     }
@@ -58,12 +58,12 @@ public class TestOnRegexTutorials {
     @Test
     void EX2_filmsBefore1990() {
         answer = "^.+\\((19[0-8]\\d|\\d{3}|\\d{2}|\\d)\\)";
-        ritex = LINE_START.and(oneOrMore(ANY_CHAR))
-                .and(OPEN_BRACKET)
-                .and(
-                        riot("19").and(
-                                include().chars('0').through('8')
-                        ).and(DIGIT).or(
+        ritex = LINE_START.then(oneOrMore(ANY_CHAR))
+                .then(OPEN_BRACE)
+                .then(
+                        riot("19").then(
+                                inSetOf("").andChars('0').through('8')
+                        ).then(DIGIT).or(
                                 DIGIT.times(3)
                         ).or(
                                 DIGIT.times(2)
@@ -71,7 +71,7 @@ public class TestOnRegexTutorials {
                                 DIGIT
                         ).wholeThingGrouped()
                 )
-                .and(CLOSE_BRACKET);
+                .then(CLOSE_BRACE);
         System.out.println(ritex);
         check();
     }
@@ -97,9 +97,9 @@ public class TestOnRegexTutorials {
     @Test
     void EX3_hexadecimalColors() {
         ritex = riot("#")
-                .and(
+                .then(
                         DIGIT.or(
-                                include().chars('A').through('F')
+                                inSetOf("").andChars('A').through('F')
                         )
                 ).times(6);
         // TODO: Default grouping should be grouping without remembering like #(?:\d|[A-F]){6} instead of #(\d|[A-F]){6}
@@ -134,15 +134,15 @@ public class TestOnRegexTutorials {
     void EX4_greyScaleColors() {
         answer = "#((?:\\d|[A-F]|[a-f]){1,2})\\1{2}";
         ritex = riot("#")
-                .and(
+                .then(
                         DIGIT.or(
-                                include().chars('A').through('F')
+                                inSetOf("").andChars('A').through('F')
                         ).or(
-                                include().chars('a').through('f')
+                                inSetOf("").andChars('a').through('f')
                         )
                 ).times(1, 2)
                 .grouped()
-                .and(group(1))
+                .then(group(1))
                 .times(2);
         System.out.println(ritex);
         check();
@@ -166,7 +166,7 @@ public class TestOnRegexTutorials {
         ANY_CHAR.times(31, infinity)
          */
         answer = ".{30}.+";
-        ritex = ANY_CHAR.times(30).and(oneOrMore(ANY_CHAR));
+        ritex = ANY_CHAR.times(30).then(oneOrMore(ANY_CHAR));
         check();
         answer = ".{31,}";
         ritex = ANY_CHAR.times(31, UNLIMITED);
@@ -183,7 +183,7 @@ public class TestOnRegexTutorials {
      */
     @Test
     void EX6_removeRepeatWords() {
-        var pattern = riot("\\b").and(oneOrMore(exclude().chars(" "))).wholeThingGrouped().and(" ").and(group(1)).compile();
+        var pattern = riot("\\b").then(oneOrMore(outSetOf(" "))).wholeThingGrouped().then(" ").then(group(1)).compile();
         var raw = "It was a chilly November afternoon. I had just just consummated an unusually hearty dinner, of which the dyspeptic truffe formed not the least important item, and was sitting alone in the dining-room dining-room, with my feet upon the the fender, and at my elbow a small table which I had rolled up to the fire, and upon which were some apologies for dessert, with some miscellaneous bottles bottles of wine, spirit and liqueur. In the morning I had had been reading Glover's \"Leonidas\", Wilkie's Wilkie's \"Epigoniad\", Lamartine's \"Pilgrimage\", Barlow's \"Columbiad\", Tuckermann's \"Sicily\", and Griswold's \"Curiosities\" ; I am willing to confess, therefore, that I now felt a little stupid.";
         var correct = "It was a chilly November afternoon. I had just consummated an unusually hearty dinner, of which the dyspeptic truffe formed not the least important item, and was sitting alone in the dining-room, with my feet upon the fender, and at my elbow a small table which I had rolled up to the fire, and upon which were some apologies for dessert, with some miscellaneous bottles of wine, spirit and liqueur. In the morning I had been reading Glover's \"Leonidas\", Wilkie's \"Epigoniad\", Lamartine's \"Pilgrimage\", Barlow's \"Columbiad\", Tuckermann's \"Sicily\", and Griswold's \"Curiosities\" ; I am willing to confess, therefore, that I now felt a little stupid.";
         var replaced = pattern.matcher(raw).replaceAll(replacementGroup(1).toString());
@@ -213,9 +213,9 @@ public class TestOnRegexTutorials {
      */
     @Test
     void EX7_matchHTML() {
-        ritex = riot("<").and(
-                oneOrMore(exclude().chars(">"))// riotSet().exclude(">"))
-        ).and(">");
+        ritex = riot("<").then(
+                oneOrMore(outSetOf(">"))// riotSet().exclude(">"))
+        ).then(">");
         answer = "<[^>]+>";
         check();
     }
@@ -261,7 +261,7 @@ public class TestOnRegexTutorials {
                 Chinese Yuan = 0.16 US Dollar
                 Malaysian Ringgit = 0.31 US Dollar
                 New Zealand Dollar = 0.81 US Dollar""";
-        var replaced = oneOrMore(DIGIT).and(DOT).and(DIGIT).times(1,2).wholeThingGrouped().and(oneOrMore(DIGIT))
+        var replaced = oneOrMore(DIGIT).then(DOT).then(DIGIT).times(1,2).wholeThingGrouped().then(oneOrMore(DIGIT))
                 .compile().matcher(raw).replaceAll(replacementGroup(1).toString());
         assert replaced.equals(correct);
     }
@@ -292,8 +292,8 @@ public class TestOnRegexTutorials {
                 8 Bangladesh 152,518,015
                 9 Russia 143,600,000
                 10 Japan 127,290,000""";
-        var replaced = DIGIT.times(1,3).grouped().followedBy(oneOrMore(DIGIT.times(3)).and(BOUNDARY))
-                .compile().matcher(raw).replaceAll(replacementGroup(1).and(",").toString());
+        var replaced = DIGIT.times(1,3).grouped().followedBy(oneOrMore(DIGIT.times(3)).then(BOUNDARY))
+                .compile().matcher(raw).replaceAll(replacementGroup(1).then(",").toString());
         assert replaced.equals(correct);
     }
 
@@ -312,14 +312,14 @@ public class TestOnRegexTutorials {
      */
     @Test
     void EX10_lowercaseFunctionDeclaration() {
-        ritex = riot("function ").and(
-                include().chars('a').through('z')
+        ritex = riot("function ").then(
+                inSetOf("").andChars('a').through('z')
 //                riotInclude(chars('a').through('z'))
 //                        riotSet().include(chars('a').through('z')).toRiotString()
-                ).and(oneOrMore(WORD_CHAR))
-                .and(OPEN_BRACKET)
-                .and(zeroOrMore(exclude().chars(CLOSE_BRACKET)))//riotExclude(CLOSE_BRACKET)))//riotSet().exclude(CLOSE_BRACKET)))
-                .and(CLOSE_BRACKET);
+                ).then(oneOrMore(WORD_CHAR))
+                .then(OPEN_BRACE)
+                .then(zeroOrMore(outSetOf(CLOSE_BRACE)))//riotExclude(CLOSE_BRACKET)))//riotSet().exclude(CLOSE_BRACKET)))
+                .then(CLOSE_BRACE);
         answer = "function [a-z]\\w+\\([^\\)]*\\)";
         check();
     }
@@ -344,17 +344,23 @@ public class TestOnRegexTutorials {
                 Dmitri Mendeleev 08.02.1834 — 02.02.1907
                 Marie Curie 07.11.1867 — 04.07.1934
                 Linus Pauling 28.02.1901 — 19.08.1994""";
-        var replaced = DIGIT.times(4).grouped().and("-")
-                .and(DIGIT).times(2).grouped().and("-")
-                .and(DIGIT).times(2).grouped()
-
+        ritex = DIGIT.times(4).grouped().then("-")
+                .then(DIGIT).times(2).grouped().then("-")
+                .then(DIGIT).times(2).grouped();
+        var replaced = ritex
                 .compile().matcher(raw)
                 .replaceAll(
-                        replacementGroup(3).and(DOT)
-                                .and(replacementGroup(2)).and(DOT)
-                                .and(replacementGroup(1)).toString()
+                        replacementGroup(3).then(DOT)
+                                .then(replacementGroup(2)).then(DOT)
+                                .then(replacementGroup(1)).toString()
                 );
         assert replaced.equals(correct);
+        System.out.println(ritex);
+        System.out.println(
+                replacementGroup(3).then(DOT)
+                        .then(replacementGroup(2)).then(DOT)
+                        .then(replacementGroup(1)).toString()
+        );
     }
 
     /**
@@ -378,22 +384,22 @@ public class TestOnRegexTutorials {
         ritex =
                 riot(
                         // Hours
-                        include().chars("01").andThen(DIGIT).or(
-                                riot("2").and(include().chars("0123"))
+                        inSetOf("01").andThen(DIGIT).or(
+                                riot("2").then(inSetOf("0123"))
                         )
                 ).grouped()
-                        .and(":")
-                        .and(
+                        .then(":")
+                        .then(
                                 // Minutes
-                                include().chars('0').through('5').andThen(DIGIT)
+                                inSetOf("").andChars('0').through('5').andThen(DIGIT)
                         );
         answer = "([01]\\d|2[0123]):[0-5]\\d";
         check();
-        ritex = include().chars("01").andThen(DIGIT).or(
-                riot("2").and(include().chars("0123"))
+        ritex = inSetOf("01").andThen(DIGIT).or(
+                riot("2").then(inSetOf("0123"))
         ).wholeThingGrouped()
-                .and(":")
-                .and(include().chars("012345").andThen(DIGIT));
+                .then(":")
+                .then(inSetOf("012345").andThen(DIGIT));
         answer = "([01]\\d|2[0123]):[012345]\\d";
         check();
     }
@@ -401,12 +407,12 @@ public class TestOnRegexTutorials {
     void EX13_validate12hFormat() {
         ritex =
                 riot(BOUNDARY)
-                        .and(riot("0").optionally().and(DIGIT).or("1").and(include().chars("012"))) // Hours
+                        .then(riot("0").optionally().then(DIGIT).or("1").then(inSetOf("012"))) // Hours
                         .grouped()
-                        .and(":")
-                        .and(include().chars('0').through('5').andThen(DIGIT)) // Minutes
-                        .and(oneOrMore(SPACE))
-                        .and(riot("AM").or("PM"))
+                        .then(":")
+                        .then(inSetOf("").andChars('0').through('5').andThen(DIGIT)) // Minutes
+                        .then(oneOrMore(SPACE))
+                        .then(riot("AM").or("PM"))
                         .grouped();
         answer = "\\b(0?\\d|1[012]):[0-5]\\d\\s+(AM|PM)";
         check();
@@ -434,7 +440,7 @@ public class TestOnRegexTutorials {
                 {
                 return Sum(l, count)/count;
                 }""";
-        ritex = riot(";").followedBy(oneOrMore(exclude().chars(OPEN_BRACKET)).and(CLOSE_BRACKET));
+        ritex = riot(";").followedBy(oneOrMore(outSetOf(OPEN_BRACE)).then(CLOSE_BRACE));
         var replaced = ritex
                 .compile().matcher(raw).replaceAll(",");
         System.err.println("----");
@@ -465,9 +471,9 @@ public class TestOnRegexTutorials {
                 }
                 """;
         ritex = riot(BOUNDARY+"var"+SPACES)
-                .and(oneOrMore(WORD_CHAR)).groupedAs("name")
-                .and(SPACES+"="+SPACES+"new"+SPACES)
-                .and(oneOrMore(exclude().chars(OPEN_BRACKET))).groupedAs("type");
+                .then(oneOrMore(WORD_CHAR)).groupedAs("name")
+                .then(SPACES+"="+SPACES+"new"+SPACES)
+                .then(oneOrMore(outSetOf(OPEN_BRACE))).groupedAs("type");
         var replaced = ritex
                 .compile().matcher(raw).replaceAll(replacementGroup("type")+" "+replacementGroup("name"));
         System.err.println(replaced);
@@ -490,12 +496,12 @@ public class TestOnRegexTutorials {
     @Test
     void EX16_IPV6address() {
         ritex = HEX_LOWER.toRiotString().times(1, 4)
-                .and(
-                        riot(":").and(HEX_LOWER.toRiotString().times(0, 4))
+                .then(
+                        riot(":").then(HEX_LOWER.toRiotString().times(0, 4))
                                 .wholeTimes(1, 6)
                 )
-                .and(":")
-                .and(HEX_LOWER.toRiotString().times(1, 4));
+                .then(":")
+                .then(HEX_LOWER.toRiotString().times(1, 4));
         answer = "[\\da-f]{1,4}(?::[\\da-f]{0,4}){1,6}:[\\da-f]{1,4}";
         check();
     }
@@ -515,8 +521,8 @@ public class TestOnRegexTutorials {
     @Test
     void EX17_valid32_24HexColors() {
         ritex = riot("#")
-                .and(HEX).times(6)
-                .and(HEX).times(2).optionally()
+                .then(HEX).times(6)
+                .then(HEX).times(2).optionally()
                 .followedBy(HEX.complement());
         answer = "#[\\da-fA-F]{6}(?:[\\da-fA-F]{2})?(?=[^\\da-fA-F])";
         check();
@@ -538,11 +544,11 @@ public class TestOnRegexTutorials {
                 var dotProduct(v1, v2) = Add(v1.x*v2.x, v1.y*v2.y)
                 """;
         // (\w[a-z0-9()*.]+)\s?\+\s?(\w[a-z0-9()*.]+)
-        var argument = WORD_CHAR.and(include().chars(WORD_CHAR).chars("()*.")).zeroOrMoreTimes();
+        var argument = WORD_CHAR.then(inSetOf(WORD_CHAR).and("()*.")).zeroOrMoreTimes();
         ritex =
                 riot(argument).as("a")
-                        .and(SPACES).and(PLUS).and(SPACES)
-                        .and(argument).as("b");
+                        .then(SPACES).then(PLUS).then(SPACES)
+                        .then(argument).as("b");
 
         var replaced = ritex
                         .compile().matcher(raw).replaceAll("Add("+replacementGroup("a")+", "+replacementGroup("b")+")");
@@ -566,9 +572,9 @@ public class TestOnRegexTutorials {
     @Test
     void EX19_extractURL_Query() {
         ritex = riot(QUESTION_MARK)
-                .and(oneOrMore(WORD_CHAR))
-                .and("=")
-                .and(oneOrMore(ANY_CHAR));
+                .then(oneOrMore(WORD_CHAR))
+                .then("=")
+                .then(oneOrMore(ANY_CHAR));
         answer = "\\?\\w+=.+";
         check();
     }
@@ -587,8 +593,8 @@ public class TestOnRegexTutorials {
     @Test
     void EX20_extractURL_host() {
         ritex = riot("http")
-                .and("://")
-                .and(oneOrMore(exclude().chars(QUESTION_MARK).chars("/")));
+                .then("://")
+                .then(oneOrMore(outSetOf(QUESTION_MARK).and("/")));
         answer = "http://[^\\?/]+";
         check();
     }
@@ -610,8 +616,8 @@ public class TestOnRegexTutorials {
     @Test
     void EX21_stringWithNoChocolate() {
         ritex = LINE_START
-                .followedByNot(oneOrMore(ANY_CHAR).and("chocolate"))
-                .and(ANY_CHAR).onceOrMoreTimes();
+                .followedByNot(oneOrMore(ANY_CHAR).then("chocolate"))
+                .then(ANY_CHAR).onceOrMoreTimes();
         answer = "^(?!.+chocolate).+";
         check();
     }

@@ -10,33 +10,33 @@ import static io.github.rk22000.RegexRiot.RiotStringImplementations.newLazyRiot;
 //import static io.github.rk22000.RegexRiot.RiotTypedSet.InclusiveSet.riotInclude;
 //
 public interface RiotSet extends RiotString.RiotStringable {
-    static RiotSet include() {
-        return RiotSetImplementations.lazyInclusiveSetOf();
+    static <T>RiotSet inSetOf(T seed) {
+        return RiotSetImplementations.lazyInclusiveSetOf(seed.toString());
     }
-    static RiotSet exclude() {
-        return RiotSetImplementations.lazyExclusiveSetOf();
+    static <T>RiotSet outSetOf(T seed) {
+        return RiotSetImplementations.lazyExclusiveSetOf(seed.toString());
     }
-    <T>RiotSet chars(T extension);
+    <T>RiotSet and(T extension);
     @FunctionalInterface
     interface RiotSetRange {
         RiotSet through(char endCharInclusive);
     }
-    RiotSetRange chars(char startCharInclusive);
+    RiotSetRange andChars(char startCharInclusive);
     RiotSet complement();
     default RiotString toRiotString() {
         return newLazyRiot(toString(), true);
     }
     default RiotString andThen(RiotString expression) {
-        return toRiotString().and(expression);
+        return toRiotString().then(expression);
     }
 }
 
 class RiotSetImplementations {
-    static RiotSet lazyInclusiveSetOf() {
-        return new LazyInclusiveRiotSet("");
+    static RiotSet lazyInclusiveSetOf(String seed) {
+        return new LazyInclusiveRiotSet(seed);
     }
-    static RiotSet lazyExclusiveSetOf() {
-        return new LazyExclusiveRiotSet("");
+    static RiotSet lazyExclusiveSetOf(String seed) {
+        return new LazyExclusiveRiotSet(seed);
     }
     private static abstract class LazyRiotSet implements Evalable<RiotSet>, RiotSet {
         final LazyRiotSet prefix, suffix;
@@ -73,7 +73,7 @@ class RiotSetImplementations {
             return riotSet(combinator.apply(prefix, suffix));
         }
         @Override
-        public <T>RiotSet chars(T extension) {
+        public <T>RiotSet and(T extension) {
             return riotSet(
                     this,
                     riotSet(extension.toString()),
@@ -82,8 +82,8 @@ class RiotSetImplementations {
         }
 
         @Override
-        public RiotSetRange chars(char startCharInclusive) {
-            return endCharInclusive -> chars(""+startCharInclusive+"-"+endCharInclusive);
+        public RiotSetRange andChars(char startCharInclusive) {
+            return endCharInclusive -> and(""+startCharInclusive+"-"+endCharInclusive);
         }
     }
     private static class LazyInclusiveRiotSet extends LazyRiotSet {
