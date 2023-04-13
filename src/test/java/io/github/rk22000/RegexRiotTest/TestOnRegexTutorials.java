@@ -344,22 +344,22 @@ public class TestOnRegexTutorials {
                 Dmitri Mendeleev 08.02.1834 — 02.02.1907
                 Marie Curie 07.11.1867 — 04.07.1934
                 Linus Pauling 28.02.1901 — 19.08.1994""";
-        ritex = DIGIT.times(4).grouped().then("-")
-                .then(DIGIT).times(2).grouped().then("-")
-                .then(DIGIT).times(2).grouped();
+        ritex = DIGIT.times(4).groupedAs("year").then("-")
+                .then(DIGIT.times(2)).groupedAs("month").then("-")
+                .then(DIGIT).times(2).groupedAs("day");
         var replaced = ritex
                 .compile().matcher(raw)
                 .replaceAll(
-                        replacementGroup(3).then(DOT)
-                                .then(replacementGroup(2)).then(DOT)
-                                .then(replacementGroup(1)).toString()
+                        replacementGroup("day").then(DOT)
+                                .then(replacementGroup("month")).then(DOT)
+                                .then(replacementGroup("year")).toString()
                 );
         assert replaced.equals(correct);
         System.out.println(ritex);
         System.out.println(
-                replacementGroup(3).then(DOT)
-                        .then(replacementGroup(2)).then(DOT)
-                        .then(replacementGroup(1)).toString()
+                replacementGroup("day").then(DOT)
+                        .then(replacementGroup("month")).then(DOT)
+                        .then(replacementGroup("year")).toString()
         );
     }
 
@@ -526,6 +526,7 @@ public class TestOnRegexTutorials {
                 .followedBy(HEX.complement());
         answer = "#[\\da-fA-F]{6}(?:[\\da-fA-F]{2})?(?=[^\\da-fA-F])";
         check();
+        System.out.println(answer);
     }
 
     @Test
