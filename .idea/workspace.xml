@@ -81,7 +81,7 @@
       <recent name="io.github.rk22000" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TestOnRegexTutorials.EX17_valid32_24HexColors">
+  <component name="RunManager" selected="Gradle.TestOnRegexTutorials.EX18_operatorReplacedByFunc">
     <configuration name="TestOnRedundantChainOfFunctionCalls.EX18_operatorReplacedByFunc" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -96,29 +96,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRedundantChainOfFunctionCalls.EX18_operatorReplacedByFunc&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="TestOnRegexTutorials" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -174,6 +151,29 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="TestOnRegexTutorials.EX18_operatorReplacedByFunc" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;io.github.rk22000.RegexRiotTest.TestOnRegexTutorials.EX18_operatorReplacedByFunc&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="TestOnRegexTutorials.EX7_matchHTML" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -199,11 +199,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.TestOnRegexTutorials.EX17_valid32_24HexColors" />
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX18_operatorReplacedByFunc" />
         <item itemvalue="Gradle.TestOnRegexTutorials.EX11_changeDateFormat" />
+        <item itemvalue="Gradle.TestOnRegexTutorials.EX17_valid32_24HexColors" />
         <item itemvalue="Gradle.TestOnRegexTutorials.EX7_matchHTML" />
         <item itemvalue="Gradle.TestOnRedundantChainOfFunctionCalls.EX18_operatorReplacedByFunc" />
-        <item itemvalue="Gradle.TestOnRegexTutorials" />
       </list>
     </recent_temporary>
   </component>

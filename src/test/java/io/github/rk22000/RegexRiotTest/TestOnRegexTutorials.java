@@ -545,7 +545,7 @@ public class TestOnRegexTutorials {
                 var dotProduct(v1, v2) = Add(v1.x*v2.x, v1.y*v2.y)
                 """;
         // (\w[a-z0-9()*.]+)\s?\+\s?(\w[a-z0-9()*.]+)
-        var argument = WORD_CHAR.then(inSetOf(WORD_CHAR).and("()*.")).zeroOrMoreTimes();
+        var argument = WORD_CHAR.then(zeroOrMore(inSetOf(WORD_CHAR).and("()*.")));
         ritex =
                 riot(argument).as("a")
                         .then(SPACES).then(PLUS).then(SPACES)
