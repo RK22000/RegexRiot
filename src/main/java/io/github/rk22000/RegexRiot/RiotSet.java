@@ -6,20 +6,24 @@ public interface RiotSet {
     static RiotSet riotSet(RiotString initialElement) {
         return new BasicRiotSet(initialElement);
     }
-    RiotSet union(RiotSet oSet);
-    RiotString toRiotString();
 
+    RiotSet union(RiotSet oSet);
+
+    RiotString toRiotString();
 
     static RiotSet charsIn(char[] chars) {
         return riotSet(riot(new String(chars)));
     }
+
     class RiotCharRange {
         private final char startChar;
+
         RiotCharRange(char inclusiveStartChar) {
             startChar = inclusiveStartChar;
         }
+
         public RiotSet through(char inclusiveEndChar) {
-            return riotSet(riot(startChar+"-"+inclusiveEndChar, true));
+            return riotSet(riot(startChar + "-" + inclusiveEndChar, true));
         }
     }
 
@@ -29,8 +33,9 @@ public interface RiotSet {
 
 }
 
-class BasicRiotSet implements RiotSet{
+class BasicRiotSet implements RiotSet {
     RiotString setString;
+
     BasicRiotSet(RiotString initialElement) {
         setString = initialElement;
     }
@@ -43,16 +48,13 @@ class BasicRiotSet implements RiotSet{
     @Override
     public RiotSet union(RiotSet oSet) {
         return new BasicRiotSet(
-                setString.and(oSet.toString())
-        );
+                setString.and(oSet.toString()));
     }
 
     @Override
     public RiotString toRiotString() {
         return riot(
                 "[" + setString + "]",
-                true
-        );
+                true);
     }
 }
-

@@ -5,46 +5,66 @@ import java.util.regex.Pattern;
 
 public interface RiotString {
     SimpleRiotString simpleRiotStringFrom(String expression);
+
     SimpleRiotString toSimpleRiotString();
+
     RiotString and(SimpleRiotString extension);
+
     default RiotString and(String extension) {
         return this.and(simpleRiotStringFrom(extension));
     }
+
     default RiotString and(RiotString extension) {
         return this.and(extension.toSimpleRiotString());
     }
+
     default RiotString and(RiotSet set) {
         return this.and(set.toRiotString());
     }
 
     RiotString or(SimpleRiotString extension);
+
     default RiotString or(String extension) {
         return this.or(simpleRiotStringFrom(extension));
     }
+
     default RiotString or(RiotString extension) {
         return this.or(extension.toSimpleRiotString());
     }
+
     RiotString wholeTimes(int atleast, int atmost);
+
     RiotString wholeTimes(int repeatCount);
 
     RiotString wholeThingOptional();
 
     RiotString wholeThingGrouped();
+
     RiotString wholeThingGroupedAs(String name);
+
     default RiotString as(String name) {
         return wholeThingGroupedAs(name);
     }
+
     boolean isUnitChain();
+
     default boolean isNotUnitChain() {
         return !isUnitChain();
     }
+
     Pattern compiledPattern();
+
     RiotString times(int atleast, int atmost);
+
     RiotString times(int repeatCount);
+
     RiotString optionally();
+
     RiotString grouped();
+
     RiotString groupedAs(String name);
 }
+
 class ChildRiotString implements RiotString {
 
     private final Function<SimpleRiotString, SimpleRiotString> mother;
@@ -54,6 +74,7 @@ class ChildRiotString implements RiotString {
         this.mother = simpleRiotString -> simpleRiotString;
         this.father = father;
     }
+
     ChildRiotString(Function<SimpleRiotString, SimpleRiotString> mother, SimpleRiotString father) {
         this.mother = mother;
         this.father = father;
@@ -78,16 +99,14 @@ class ChildRiotString implements RiotString {
     public RiotString and(SimpleRiotString extension) {
         return new ChildRiotString(
                 mother.apply(father)::and,
-                extension
-        );
+                extension);
     }
 
     @Override
     public RiotString or(SimpleRiotString extension) {
         return new ChildRiotString(
                 mother.apply(father)::or,
-                extension
-        );
+                extension);
     }
 
     @Override
@@ -129,40 +148,35 @@ class ChildRiotString implements RiotString {
     public RiotString times(int atleast, int atmost) {
         return new ChildRiotString(
                 mother,
-                father.wholeTimes(atleast, atmost)
-        );
+                father.wholeTimes(atleast, atmost));
     }
 
     @Override
     public RiotString times(int repeatCount) {
         return new ChildRiotString(
                 mother,
-                father.wholeTimes(repeatCount)
-        );
+                father.wholeTimes(repeatCount));
     }
 
     @Override
     public RiotString optionally() {
         return new ChildRiotString(
                 mother,
-                father.wholeThingOptional()
-        );
+                father.wholeThingOptional());
     }
 
     @Override
     public RiotString grouped() {
         return new ChildRiotString(
                 mother,
-                father.wholeThingGrouped()
-        );
+                father.wholeThingGrouped());
     }
 
     @Override
     public RiotString groupedAs(String name) {
         return new ChildRiotString(
                 mother,
-                father.wholeThingGroupedAs(name)
-        );
+                father.wholeThingGroupedAs(name));
     }
 
 }
