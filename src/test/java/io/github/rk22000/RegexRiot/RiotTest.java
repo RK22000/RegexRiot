@@ -17,11 +17,11 @@ class RiotTest {
                         .and(" Kandekar")
                         .as("myName")
                         .or(
-                                Riot.create("Saptrashi")
+                                Riot.create("Saptarshi")
                                         .wholeTimes(2)
                                         .as("profsName")
                         );
-        var expectedResult = "((?<myName>Rahul Kandekar)|(?<profsName>(Saptrashi){2}))";
+        var expectedResult = "((?<myName>Rahul Kandekar)|(?<profsName>(Saptarshi){2}))";
         assert riotex.toString().equals(expectedResult): riotex + "!=" + expectedResult;
     }
 
