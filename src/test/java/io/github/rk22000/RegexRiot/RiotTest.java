@@ -21,7 +21,7 @@ class RiotTest {
                                         .wholeTimes(2)
                                         .as("profsName")
                         );
-        var expectedResult = "((?<myName>Rahul Kandekar)|(?<profsName>(Saptarshi){2}))";
+        var expectedResult = "(?<myName>Rahul Kandekar)|(?<profsName>(Saptarshi){2})";
         assert riotex.toString().equals(expectedResult): riotex + "!=" + expectedResult;
     }
 

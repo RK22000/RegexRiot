@@ -19,13 +19,13 @@ class TestForRiotGeneratedRegex {
     void nameGroups() {
         ritex = riot("Bugs")
                 .and(" Bunny")
-                .as("myName")
+                .as("icon")
                 .or(
-                        riot("Donald")
+                        riot("Daffy")
                                 .times(2)
-                                .as("profsName")
+                                .as("wingman")
                 );
-        answer = "(?<myName>Bugs Bunny)|(?<profsName>(Donald){2})";
+        answer = "(?<icon>Bugs Bunny)|(?<wingman>(Daffy){2})";
         check();
     }
     @Test
