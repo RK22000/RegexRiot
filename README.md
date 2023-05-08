@@ -1,8 +1,29 @@
-This branch is to try out the idea of maintaining riotset as an aggregate of an inString and outString. ie stuff to includ and stuff to exclude
+# Methodology
 
-This branch is to converting the regular RiotSet as a Type of RiotString to make it possible to call RiotString commands on a RiotSet
-* RiotSet_as_a_RiotString
-$last
-This branch is to converting the regular RiotSet as a Type of RiotString to make it possible to call RiotString commands on a RiotSet
-#BIG BUG
-If set does not start with ^ then ^ is just a char to include
+This library is built around the interface `RiotString`. 
+`RiotString`s are immutable type objects that represent
+a regex. They can have two types of operations done upon 
+them.
+
+* **combination:** A `RiotString` can combine with another
+`RiotString` to produce a new `RiotString` that is the 
+combination of its parent `RiotString`s
+  * 'abc' then 'xyz' => 'abcxyz'
+  * 'abc'  or  'xyz' => 'abc|xyz'
+* **modification:** A `RiotString` can be modified to create
+a new altered variant of the original `RiotString`
+  * 'abc' times 3 => '(abc){3}'
+  * 'abc' but 'c' is optional => 'abc?'
+
+
+
+
+
+
+# Points of improvement
+There should be room to improve LazyRiotString evaluation 
+speed by caching evaluated results. But that breaks the 
+principal of immutability. Instead, the closest current thing
+is to use the eval method to create a new LazyRiotString 
+that is the same regex but with all the nested prefixes and 
+suffixes resolved to a single string regex

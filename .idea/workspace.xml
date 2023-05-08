@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9c408116-9517-43a7-a7a4-bc833152cbaa" name="Changes" comment="enabled Riotset and stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/Riot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/Riot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTokens.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rk22000/RegexRiot/RiotTokens.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/RiotStringTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/RiotStringTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestOnRegexTutorials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/github/rk22000/RegexRiotTest/TestOnRegexTutorials.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +40,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="default-riotstring-to-string" />
+        <entry key="$PROJECT_DIR$" value="Libraryfication" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
