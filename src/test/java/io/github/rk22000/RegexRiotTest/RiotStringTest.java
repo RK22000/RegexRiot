@@ -78,9 +78,10 @@ class RiotStringTest {
     }
     @Test
     void t1() {
+        System.out.println(lazyRiot("a").or("b").wholeThingGroupedAndForgotten().times(3).times(2));
         check(
                 lazyRiot("a").or("b").wholeTimes(3).times(2).toString(),
-                "(?:a|b){3}{2}"
+                "(?:(?:a|b){3}){2}"
         );
     }
     @Test

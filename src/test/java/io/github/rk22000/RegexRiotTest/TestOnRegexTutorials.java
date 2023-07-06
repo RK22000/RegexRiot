@@ -132,15 +132,9 @@ public class TestOnRegexTutorials {
      */
     @Test
     void EX4_greyScaleColors() {
-        answer = "#((?:\\d|[A-F]|[a-f]){1,2})\\1{2}";
+        answer = "#([\\da-fA-F]{1,2})\\1{2}";
         ritex = riot("#")
-                .then(
-                        DIGIT.or(
-                                inSetOf("").andChars('A').through('F')
-                        ).or(
-                                inSetOf("").andChars('a').through('f')
-                        )
-                ).times(1, 2)
+                .then(HEX).times(1, 2)
                 .grouped()
                 .then(group(1))
                 .times(2);
@@ -470,13 +464,14 @@ public class TestOnRegexTutorials {
                 Baz baz(random());
                 }
                 """;
-        ritex = riot(BOUNDARY+"var"+SPACES)
-                .then(oneOrMore(WORD_CHAR)).groupedAs("name")
+        ritex = riot(BOUNDARY+"var"+SPACES) // "var" part of variable declaration
+                .then(oneOrMore(WORD_CHAR)).groupedAs("name") // variable name
                 .then(SPACES+"="+SPACES+"new"+SPACES)
-                .then(oneOrMore(outSetOf(OPEN_BRACE))).groupedAs("type");
+                .then(oneOrMore(outSetOf(OPEN_BRACE))).groupedAs("type"); // variable type
         var replaced = ritex
                 .compile().matcher(raw).replaceAll(replacementGroup("type")+" "+replacementGroup("name"));
         System.err.println(replaced);
+        System.out.println(ritex);
         assert replaced.equals(correct);
     }
 
